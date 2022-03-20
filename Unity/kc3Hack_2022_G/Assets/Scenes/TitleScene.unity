@@ -199,7 +199,6 @@ GameObject:
   m_Component:
   - component: {fileID: 421691491}
   - component: {fileID: 421691490}
-  - component: {fileID: 421691492}
   - component: {fileID: 421691493}
   m_Layer: 0
   m_Name: GameManager
@@ -217,9 +216,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 421691489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5200737dc65d0aa448acfbf16f0aa461, type: 3}
+  m_Script: {fileID: 11500000, guid: 64af8fdc55bbd6a4c807cee9c0988426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sc: {fileID: 421691493}
 --- !u!4 &421691491
 Transform:
   m_ObjectHideFlags: 0
@@ -234,18 +234,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &421691492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 421691489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64af8fdc55bbd6a4c807cee9c0988426, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &421691493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,10 +491,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneChangeScript, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 421691490}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: toGaming
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

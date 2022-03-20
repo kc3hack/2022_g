@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChangeScript : MonoBehaviour
+public class SceneChanger : MonoBehaviour
 {
     // シーン変更用のメソッド  sceneNameで遷移先Scene指定
     public void ChangeScene(string sceneName)
@@ -11,7 +11,7 @@ public class SceneChangeScript : MonoBehaviour
         switch (sceneName)
         {
             case "GameScene":
-                Invoke("ChangeToGameScene", 1.5f);
+                Invoke("ChangeToGameScene", 1.0f);
                 break;
             default:
                 Debug.Log("SceneNameError");

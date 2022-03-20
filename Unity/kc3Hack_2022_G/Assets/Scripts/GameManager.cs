@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    // ゲーム中かどうか
+    bool inGaming = false;
+    [SerializeField] SceneChanger sc;
+
     void Start()
     {
-        
+        DontDestroyOnLoad(this);    // シーン変更時にGameObjectが消えないようにする
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    // ゲームスタート
+    public void toGaming() {
+        inGaming = true;
+        sc.ChangeScene("GameScene");
     }
+
 }
