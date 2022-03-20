@@ -1,30 +1,30 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// ƒV[ƒ“‘JˆÚˆ——pƒXƒNƒŠƒvƒg
+// ã‚·ãƒ¼ãƒ³é·ç§»å‡¦ç†ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 public class SceneChanger : MonoBehaviour
 {
-    // ‚Ü‚¸Å‰‚ÉÀs
+    // ã¾ãšæœ€åˆã«å®Ÿè¡Œ
     private void Start()
     {
-        // ‚±‚ÌƒXƒNƒŠƒvƒg‚ªƒAƒ^ƒbƒ`‚³‚ê‚½GameObject‚ªAƒV[ƒ“‘JˆÚ‚É”jŠü‚³‚ê‚È‚­‚È‚é
+        // ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒã‚¢ã‚¿ãƒƒãƒã•ã‚ŒãŸGameObjectãŒã€ã‚·ãƒ¼ãƒ³é·ç§»æ™‚ã«ç ´æ£„ã•ã‚Œãªããªã‚‹
         DontDestroyOnLoad(this);
     }
 
 
-    // ƒV[ƒ“•ÏX—p‚Ìƒƒ\ƒbƒh  sceneName‚Å‘JˆÚæScenew’è
+    // ã‚·ãƒ¼ãƒ³å¤‰æ›´ç”¨ã®ãƒ¡ã‚½ãƒƒãƒ‰  sceneNameã§é·ç§»å…ˆSceneæŒ‡å®š
     public void ChangeScene(string sceneName)
     {
         switch (sceneName)
         {
             case "GameScene":
-                // 1.0f•bŒãAƒƒ\ƒbƒh"ChangeToGameScene"‚ğÀs
+                // 1.0fç§’å¾Œã€ãƒ¡ã‚½ãƒƒãƒ‰"ChangeToGameScene"ã‚’å®Ÿè¡Œ
                 Invoke("ChangeToGameScene", 1.0f);
                 break;
             default:
-                // ƒƒO‚É"SceneNameError"‚Æ•\¦
+                // ãƒ­ã‚°ã«"SceneNameError"ã¨è¡¨ç¤º
                 Debug.Log("SceneNameError");
                 break;
         }
@@ -32,10 +32,10 @@ public class SceneChanger : MonoBehaviour
     }
 
 
-    // GameScene‚É‘JˆÚ‚·‚é—p‚Ìƒƒ\ƒbƒh
+    // GameSceneã«é·ç§»ã™ã‚‹ç”¨ã®ãƒ¡ã‚½ãƒƒãƒ‰
     public void ChangeToGameScene()
     {
-        // ƒV[ƒ“"GameScene"‚É‘JˆÚ
+        // ã‚·ãƒ¼ãƒ³"GameScene"ã«é·ç§»
         SceneManager.LoadScene("GameScene");
     }
 

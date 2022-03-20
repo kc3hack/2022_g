@@ -1,22 +1,22 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-// ƒQ[ƒ€“àˆ——pƒXƒNƒŠƒvƒg
+// ã‚²ãƒ¼ãƒ å†…å‡¦ç†ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 public class InGameManager : MonoBehaviour
 {
 
-    // [SerializeField]‚ğ•t‚¯‚Ä•Ï”‚ğéŒ¾‚·‚é‚ÆApublic ‚Ì•Ï”‚Å‚È‚­‚Ä‚à Unity Editor‘¤iinspector“àj‚©‚ç’†g‚ğw’è‚·‚é‚±‚Æ‚ªo—ˆ‚é‚æ‚¤‚É‚È‚éB
-    [SerializeField] int score = 0;     // Œ»İ‚ÌƒXƒRƒA
-    [SerializeField] Text scoreText;    // ƒXƒRƒA‚ğ•\¦‚·‚éƒeƒLƒXƒg
+    // [SerializeField]ã‚’ä»˜ã‘ã¦å¤‰æ•°ã‚’å®£è¨€ã™ã‚‹ã¨ã€public ã®å¤‰æ•°ã§ãªãã¦ã‚‚ Unity Editorå´ï¼ˆinspectorå†…ï¼‰ã‹ã‚‰ä¸­èº«ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹ã‚ˆã†ã«ãªã‚‹ã€‚
+    [SerializeField] int score = 0;     // ç¾åœ¨ã®ã‚¹ã‚³ã‚¢
+    [SerializeField] Text scoreText;    // ã‚¹ã‚³ã‚¢ã‚’è¡¨ç¤ºã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆ
 
 
-    // 0.02•b‚É1‰ñiƒfƒtƒHƒ‹ƒg’lj‚ÌŠÔŠu‚ÅÀs‚·‚é
+    // 0.02ç§’ã«1å›ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ï¼‰ã®é–“éš”ã§å®Ÿè¡Œã™ã‚‹
     void FixedUpdate()
     {
-        // score‚ğ•¶š—ñŒ^‚É‚µ‚ÄƒeƒLƒXƒg‚É”½‰f‚³‚¹‚é
+        // scoreã‚’æ–‡å­—åˆ—å‹ã«ã—ã¦ãƒ†ã‚­ã‚¹ãƒˆã«åæ˜ ã•ã›ã‚‹
         scoreText.text = score.ToString();
     }
 
