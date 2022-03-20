@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+
+    private void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     // シーン変更用のメソッド  sceneNameで遷移先Scene指定
     public void ChangeScene(string sceneName)
     {
