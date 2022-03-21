@@ -158,6 +158,16 @@ public class InGameManager : MonoBehaviour
         }
     }
 
+    // もし引数があった時にはこっちを実行（オーバーロード）
+    public void addScore(int num)
+    {
+        // numをscoreに加算
+        score += num;
+
+        // scoreを文字列型にしてテキストに反映させる
+        scoreText.text = score.ToString();
+    }
+
 
     // currentItemを回転させるメソッド
     public void rotateCurrentItem(int dir)

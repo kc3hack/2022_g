@@ -23,6 +23,9 @@ public class DropTrigger : MonoBehaviour
         if (collision.tag == "Item")
         {
             beGameOver = true;
+            rotateButtonL.SetActive(false);
+            rotateButtonR.SetActive(false);
+            igm.addScore(-50);
         }
     }
 
