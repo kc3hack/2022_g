@@ -123,4 +123,18 @@ public class InGameManager : MonoBehaviour
             scoreText.text = score.ToString();
         }
     }
+
+
+    // currentItemを回転させるメソッド
+    public void rotateCurrentItem(int dir)
+    {
+        if (currentItemGO != null)
+        {
+            if (currentItem.bePlaced != true)
+            {
+                currentItemGO.transform.Rotate(new Vector3(0, 0, 30 * dir));
+            }
+        }
+    }
+
 }

@@ -798,7 +798,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 975396525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2005044308}
+        m_TargetAssemblyTypeName: InGameManager, Assembly-CSharp
+        m_MethodName: rotateCurrentItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &975396525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1448,7 +1460,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2031851184}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2005044308}
+        m_TargetAssemblyTypeName: InGameManager, Assembly-CSharp
+        m_MethodName: rotateCurrentItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2031851184
 MonoBehaviour:
   m_ObjectHideFlags: 0
