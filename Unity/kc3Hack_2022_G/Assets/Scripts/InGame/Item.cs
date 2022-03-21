@@ -9,10 +9,10 @@ public class Item : MonoBehaviour
 
     Rigidbody2D rb; // Rigidbody2Dコンポーネントをスクリプトで操作する為の変数
     public bool bePlaced;     // 「既に操作されたかどうか」
-    int itemScore;  // （各種アイテムが持つ、固有のスコア　の予定）
+    public int itemBaseScore;  // 各種アイテムが持つ、固有のスコア
     float speed;    // スピード
     public bool moving; // 「動いているかどうか」
-    public bool beTouched;  // 「操作後、何か他のものに触れたかどうか」
+    public string itemType; // どの種類のアイテムなのかを情報として持つ変数
 
 
 
@@ -30,9 +30,6 @@ public class Item : MonoBehaviour
 
         // 「最初はまだ動いていない」
         moving = false;
-
-        // 「最初はまだ何にも触れていない」
-        beTouched = false;
     }
 
 

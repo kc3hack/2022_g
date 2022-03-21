@@ -7,9 +7,10 @@ using UnityEngine.UI;
 // ゲーム内処理用スクリプト
 public class InGameManager : MonoBehaviour
 {
+    public UserInformationManager uim;
 
     // [SerializeField]を付けて変数を宣言すると、public の変数でなくても Unity Editor側（inspector内）から中身を指定することが出来るようになる。
-    [SerializeField] int score = 0;     // 現在のスコア
+    private long score = 0;     // 現在のスコア
     [SerializeField] Text scoreText;    // スコアを表示するテキスト
 
     List<Item> items;   // 今存在するアイテムを管理する用のリスト
@@ -19,12 +20,31 @@ public class InGameManager : MonoBehaviour
     int stopFlames; // 連続で静止しているフレーム数
 
     [SerializeField] GameObject[] itemPrefabs;  // アイテムのprefabを管理する用の配列
+    List<GameObject> canUseItemGOList;  // 1回以上購入した、利用可能なアイテムのみを管理する用のリスト
 
 
     void Start()
     {
+        uim = GameObject.Find("UserInformationManager").GetComponent<UserInformationManager>();
+        
         items = new List<Item>();
         stopFlames = 0;
+
+        // 購入回数が0より大きい（= 購入したことがある）カテゴリのアイテムだけをリストにまとめる
+        canUseItemGOList = new List<GameObject>();
+        foreach (GameObject itemGO in itemPrefabs)
+        {
+            if (itemGO != null)
+            {
+                if (uim.itemCounts[itemGO.GetComponent<Item>().itemType] > 0)
+                {
+                    canUseItemGOList.Add(itemGO);
+                }
+            }
+        }
+
+        // scoreを文字列型にしてテキストに反映させる
+        scoreText.text = score.ToString();
 
         // 開始1.0f秒後に、最初のアイテムを生成する
         Invoke("serveNextItem", 1.0f);
@@ -79,23 +99,28 @@ public class InGameManager : MonoBehaviour
         if (stopFlames >= 100) {
             stopFlames = 0;
         }
-
-        // scoreを文字列型にしてテキストに反映させる
-        scoreText.text = score.ToString();
     }
 
 
     // 次のアイテムを生成する
     private void serveNextItem() {
-        int randomNumber = Random.Range(0, itemPrefabs.Length);
-        currentItemGO = Instantiate(itemPrefabs[randomNumber]);
+        int randomNumber = Random.Range(0, canUseItemGOList.Count);
+        currentItemGO = Instantiate(canUseItemGOList[randomNumber]);
         currentItem = currentItemGO.GetComponent<Item>();
 
         items.Add(currentItem);
     }
 
 
+    // スコアを加算するメソッド
     private void addScore() {
-        Debug.Log("add Score");
+        if (currentItem != null)
+        {
+            // （itemBaseScore + 2 * （購入回数 - 1））を加算　（一旦）
+            score += currentItem.itemBaseScore + 2 * uim.itemCounts[currentItem.itemType];
+
+            // scoreを文字列型にしてテキストに反映させる
+            scoreText.text = score.ToString();
+        }
     }
 }
