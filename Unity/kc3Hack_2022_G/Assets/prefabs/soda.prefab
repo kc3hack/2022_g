@@ -208,3 +208,4 @@ MonoBehaviour:
   itemBaseScore: 15
   moving: 0
   beTouched: 0
+  itemType: soda

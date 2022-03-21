@@ -208,3 +208,4 @@ MonoBehaviour:
   itemBaseScore: 20
   moving: 0
   beTouched: 0
+  itemType: chicken

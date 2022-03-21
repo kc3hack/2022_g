@@ -13,6 +13,7 @@ public class Item : MonoBehaviour
     float speed;    // スピード
     public bool moving; // 「動いているかどうか」
     public bool beTouched;  // 「操作後、何か他のものに触れたかどうか」
+    public string itemType; // どの種類のアイテムなのかを情報として持つ変数
 
 
 

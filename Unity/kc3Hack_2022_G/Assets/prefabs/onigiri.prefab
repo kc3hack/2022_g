@@ -198,3 +198,4 @@ MonoBehaviour:
   itemBaseScore: 10
   moving: 0
   beTouched: 0
+  itemType: onigiri
