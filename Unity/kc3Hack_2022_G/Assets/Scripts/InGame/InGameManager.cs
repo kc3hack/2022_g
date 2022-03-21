@@ -195,7 +195,7 @@ public class InGameManager : MonoBehaviour
     public void doGameOver()
     {
         Debug.Log("GameOver!");
-        GameOverText.GetComponent<Text>().text = "GameOver\nYourScore"+score;//Gameover+scoreを表示
+        GameOverText.GetComponent<Text>().text = "GameOver\nYourScore\n"+score;//Gameover+scoreを表示
         GameOverButton.SetActive(true);//ボタンを表示
         
     }
