@@ -34,6 +34,7 @@ public class DropTrigger : MonoBehaviour
                 igm.addScore(-50);
                 dropFlames = 0;
             }
+            Destroy(collision.gameObject);
         }
     }
 
