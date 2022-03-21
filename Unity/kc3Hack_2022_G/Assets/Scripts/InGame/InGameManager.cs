@@ -79,9 +79,6 @@ public class InGameManager : MonoBehaviour
         if (stopFlames >= 100) {
             stopFlames = 0;
         }
-
-        // scoreを文字列型にしてテキストに反映させる
-        scoreText.text = score.ToString();
     }
 
 
@@ -96,6 +93,12 @@ public class InGameManager : MonoBehaviour
 
 
     private void addScore() {
-        Debug.Log("add Score");
+        if (currentItem != null)
+        {
+            score += currentItem.itemBaseScore;
+
+            // scoreを文字列型にしてテキストに反映させる
+            scoreText.text = score.ToString();
+        }
     }
 }
