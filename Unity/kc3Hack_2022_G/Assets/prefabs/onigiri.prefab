@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &924382468038532608
+--- !u!1 &1715119763458182196
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 924382468038532611}
-  - component: {fileID: 924382468038532615}
-  - component: {fileID: 924382468038532612}
-  - component: {fileID: 924382468038532613}
-  - component: {fileID: 924382468038532610}
+  - component: {fileID: 1715119763458182199}
+  - component: {fileID: 1715119763458182195}
+  - component: {fileID: 1715119763458182192}
+  - component: {fileID: 1715119763458182193}
+  - component: {fileID: 1715119763458182198}
   m_Layer: 0
   m_Name: onigiri
   m_TagString: Item
@@ -20,27 +20,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &924382468038532611
+--- !u!4 &1715119763458182199
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924382468038532608}
+  m_GameObject: {fileID: 1715119763458182196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 3.15, z: 0}
-  m_LocalScale: {x: 0.38172, y: 0.38172, z: 0.38172}
+  m_LocalScale: {x: 0.2726397, y: 0.2726397, z: 0.2726397}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &924382468038532615
+--- !u!212 &1715119763458182195
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924382468038532608}
+  m_GameObject: {fileID: 1715119763458182196}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -85,13 +85,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &924382468038532612
+--- !u!60 &1715119763458182192
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924382468038532608}
+  m_GameObject: {fileID: 1715119763458182196}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 705dc29bc6f53ad4aa77dbe5b4160cf0, type: 2}
@@ -161,14 +161,14 @@ PolygonCollider2D:
       - {x: 0.81, y: -1.65}
       - {x: 1.0799999, y: -1.61}
       - {x: 1.1899999, y: -1.5799999}
---- !u!50 &924382468038532613
+--- !u!50 &1715119763458182193
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924382468038532608}
+  m_GameObject: {fileID: 1715119763458182196}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -182,15 +182,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &924382468038532610
+--- !u!114 &1715119763458182198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924382468038532608}
+  m_GameObject: {fileID: 1715119763458182196}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efa151230c100954cacc55d117f42f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bePlaced: 0
+  moving: 0
+  beTouched: 0
