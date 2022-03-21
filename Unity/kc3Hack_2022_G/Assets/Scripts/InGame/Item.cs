@@ -8,10 +8,10 @@ public class Item : MonoBehaviour
 {
 
     Rigidbody2D rb; // Rigidbody2Dコンポーネントをスクリプトで操作する為の変数
-    bool bePlaced;     // 「既に操作されたかどうか」
+    public bool bePlaced;     // 「既に操作されたかどうか」
     int itemScore;  // （各種アイテムが持つ、固有のスコア　の予定）
     float speed;    // スピード
-    public bool moving;
+    public bool moving; // 「動いているかどうか」
 
 
 
@@ -27,20 +27,26 @@ public class Item : MonoBehaviour
         // 「最初はまだ操作されていない」
         bePlaced = false;
 
+        // 「最初はまだ動いていない」
         moving = false;
     }
 
 
     void Update() {
+        // 今のスピード
         speed = rb.velocity.magnitude;
 
-        if (bePlaced)
-        {
+        // もし操作済みなら判定
+        if (bePlaced == true)
+        {   
+            // もしスピードが0.1f以上ならば
             if (speed >= 0.1f)
             {
+                // 「動いている」
                 moving = true;
-            } else
+            } else // もしそうでないならば
             {
+                // 動いていない
                 moving = false;
             }
         }
