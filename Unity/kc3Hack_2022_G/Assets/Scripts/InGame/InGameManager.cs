@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;//scenemanagerをつかうため
 
 
 // ゲーム内処理用スクリプト
@@ -28,12 +29,20 @@ public class InGameManager : MonoBehaviour
 
     [SerializeField] private DropTrigger dt;    // DropTriggerの状態を格納する為の変数
 
-
+    // gameover
+    private GameObject GameOverText;//gameover時のスコアテキスト 
+    private GameObject GameOverButton;//gameover時のリスタートボタン
     void Start()
     {
         // TitleSceneから存在する"UserInformationManager"GameObjectの、UserInformationManagerコンポーネントを格納する
         uim = GameObject.Find("UserInformationManager").GetComponent<UserInformationManager>();
-        
+
+        ////gameover
+        GameOverText=GameObject.Find("GameOverText");
+        GameOverButton=GameObject.Find("GameOverButton");
+        GameOverButton.SetActive(false);//RestartButtonを隠す
+        ////
+
         // items、stopFlames　初期化
         items = new List<Item>();
         stopFlames = 0;
@@ -186,6 +195,15 @@ public class InGameManager : MonoBehaviour
     public void doGameOver()
     {
         Debug.Log("GameOver!");
+        GameOverText.GetComponent<Text>().text = "GameOver\nYourScore\n"+score;//Gameover+scoreを表示
+        GameOverButton.SetActive(true);//ボタンを表示
+        
+    }
+
+    public void RestartButton()//RestartButtonを押したときの処理
+    {
+        Debug.Log("Restart");
+        SceneManager.LoadScene("GameScene");//GameSceneを読み直す;
     }
 
 }
