@@ -37,6 +37,7 @@ dependencies:
   flutter_riverpod:
   firebase_auth: ^3.3.11
   cloud_firestore: ^3.1.10
+  flutter_unity_widget:
 
 
 dev_dependencies:
