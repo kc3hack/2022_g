@@ -181,4 +181,11 @@ public class InGameManager : MonoBehaviour
         }
     }
 
+
+    // ゲームオーバー時の処理
+    public void doGameOver()
+    {
+        Debug.Log("GameOver!");
+    }
+
 }
