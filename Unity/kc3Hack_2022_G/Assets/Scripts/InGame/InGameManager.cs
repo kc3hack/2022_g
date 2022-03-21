@@ -22,6 +22,9 @@ public class InGameManager : MonoBehaviour
     [SerializeField] GameObject[] itemPrefabs;  // アイテムのprefabを管理する用の配列
     List<GameObject> canUseItemGOList;  // 1回以上購入した、利用可能なアイテムのみを管理する用のリスト
 
+    // アイテム回転用ボタンを格納する為の変数
+    [SerializeField] private GameObject rotateButtonL;
+    [SerializeField] private GameObject rotateButtonR;
 
     void Start()
     {
@@ -46,6 +49,10 @@ public class InGameManager : MonoBehaviour
         // scoreを文字列型にしてテキストに反映させる
         scoreText.text = score.ToString();
 
+        // rotateButton 非表示
+        rotateButtonL.SetActive(false);
+        rotateButtonR.SetActive(false);
+
         // 開始1.0f秒後に、最初のアイテムを生成する
         Invoke("serveNextItem", 1.0f);
     }
@@ -54,10 +61,22 @@ public class InGameManager : MonoBehaviour
     // 0.02秒に1回（デフォルト値）の間隔で実行する
     private void FixedUpdate()
     {
+        // currentItemのドラッグがされ始めたら、rotateButtonを非表示にする。
+        if (currentItem != null) {
+            if (currentItem.beDraged == true)
+            {
+                rotateButtonL.SetActive(false);
+                rotateButtonR.SetActive(false);
+            }
+        }
+        
+
+        // アイテム静止判定
+        
         bool stopping = true;   // 「全てのアイテムが止まっている」
 
-        if (currentItem != null) {
-
+        if (currentItem != null)
+        {
             // 現在操作するアイテムが、操作済みならば判定に入る
             if (currentItem.bePlaced == true)
             {
@@ -108,7 +127,12 @@ public class InGameManager : MonoBehaviour
         currentItemGO = Instantiate(canUseItemGOList[randomNumber]);
         currentItem = currentItemGO.GetComponent<Item>();
 
+        // itemsにcurrentItemを追加
         items.Add(currentItem);
+
+        // rotateButton 表示
+        rotateButtonL.SetActive(true);
+        rotateButtonR.SetActive(true);
     }
 
 

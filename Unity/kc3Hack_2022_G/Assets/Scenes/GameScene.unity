@@ -1378,6 +1378,8 @@ MonoBehaviour:
   - {fileID: 1774895879217478378, guid: b6d985ed7f6d1944f89a110a6a1f5a0f, type: 3}
   - {fileID: 2447466333664983824, guid: e6a9347d74ea2d3458017be47941f66a, type: 3}
   - {fileID: 1928313210468863604, guid: 7b89a48904139c64bb382b9e6596fe65, type: 3}
+  rotateButtonL: {fileID: 975396522}
+  rotateButtonR: {fileID: 2031851181}
 --- !u!1 &2031851181
 GameObject:
   m_ObjectHideFlags: 0
