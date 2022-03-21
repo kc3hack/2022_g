@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 150294140}
   m_Layer: 0
   m_Name: bottom
-  m_TagString: Untagged
+  m_TagString: O-bon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 1314403874}
   m_Layer: 0
   m_Name: wallL
-  m_TagString: Untagged
+  m_TagString: O-bon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 1473699829}
   m_Layer: 0
   m_Name: wallR
-  m_TagString: Untagged
+  m_TagString: O-bon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

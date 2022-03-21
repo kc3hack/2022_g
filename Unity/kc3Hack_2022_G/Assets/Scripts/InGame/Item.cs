@@ -12,6 +12,7 @@ public class Item : MonoBehaviour
     int itemScore;  // （各種アイテムが持つ、固有のスコア　の予定）
     float speed;    // スピード
     public bool moving; // 「動いているかどうか」
+    public bool beTouched;  // 「操作後、何か他のものに触れたかどうか」
 
 
 
@@ -29,6 +30,9 @@ public class Item : MonoBehaviour
 
         // 「最初はまだ動いていない」
         moving = false;
+
+        // 「最初はまだ何にも触れていない」
+        beTouched = false;
     }
 
 
@@ -86,4 +90,13 @@ public class Item : MonoBehaviour
         }
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (bePlaced == true) {
+            if ((collision.gameObject.tag == "Item") || (collision.gameObject.tag == "O-bon")) {
+                beTouched = true;
+            }
+        }
+    }
 }
