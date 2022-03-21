@@ -19,7 +19,7 @@ public class UserInformationManager : MonoBehaviour
         // 一旦辞書内を初期化する
         itemCounts.Clear();
 
-        // ここで購入回数を読み込む
+        // ここで購入回数を読み込み、辞書に記入する。
         for (int i = 0; i < 0; i++) {
             Debug.Log("^ ~~ ^");
         }

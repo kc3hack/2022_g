@@ -96,10 +96,12 @@ public class InGameManager : MonoBehaviour
     }
 
 
+    // スコアを加算するメソッド
     private void addScore() {
         if (currentItem != null)
         {
-            score += currentItem.itemBaseScore;
+            // （itemBaseScore + 2 * （購入回数 - 1））を加算　（一旦）
+            score += currentItem.itemBaseScore + 2 * uim.itemCounts[currentItem.itemType];
 
             // scoreを文字列型にしてテキストに反映させる
             scoreText.text = score.ToString();
