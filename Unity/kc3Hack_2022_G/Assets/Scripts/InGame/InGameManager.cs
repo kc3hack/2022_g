@@ -77,7 +77,7 @@ public class InGameManager : MonoBehaviour
 
         // int型の整数がオーバーフロー（管理できる整数の値の範囲を超える）するのを防ぐ
         if (stopFlames >= 100) {
-            stopFlames = 100;
+            stopFlames = 0;
         }
 
         // scoreを文字列型にしてテキストに反映させる

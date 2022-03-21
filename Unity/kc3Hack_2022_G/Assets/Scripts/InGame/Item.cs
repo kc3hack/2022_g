@@ -90,13 +90,4 @@ public class Item : MonoBehaviour
         }
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (bePlaced == true) {
-            if ((collision.gameObject.tag == "Item") || (collision.gameObject.tag == "O-bon")) {
-                beTouched = true;
-            }
-        }
-    }
 }
