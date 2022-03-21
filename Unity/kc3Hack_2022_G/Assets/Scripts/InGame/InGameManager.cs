@@ -66,6 +66,8 @@ public class InGameManager : MonoBehaviour
                 // もし2秒以上、静止したままだったら
                 if (stopFlames >= 100)
                 {
+                    addScore();
+                    
                     // 次のアイテムを生成する
                     serveNextItem();
                 }
@@ -85,7 +87,15 @@ public class InGameManager : MonoBehaviour
 
     // 次のアイテムを生成する
     private void serveNextItem() {
-        
+        int randomNumber = Random.Range(0, itemPrefabs.Length);
+        currentItemGO = Instantiate(itemPrefabs[randomNumber]);
+        currentItem = currentItemGO.GetComponent<Item>();
+
+        items.Add(currentItem);
     }
 
+
+    private void addScore() {
+        Debug.Log("add Score");
+    }
 }
