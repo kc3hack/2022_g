@@ -16,23 +16,56 @@ public class InGameManager : MonoBehaviour
     Item currentItem;
     GameObject currentItemGO;
 
+    int stopFlames;
+
 
     void Start()
     {
-        items = new List<>();
-    }
-
-
-    void FixedUpdate()
-    {
+        items = new List<Item>();
+        stopFlames = 0;
     }
 
 
     // 0.02秒に1回（デフォルト値）の間隔で実行する
-    void FixedUpdate()
+    private void FixedUpdate()
     {
+        bool stopping = true;
+
+        if (currentItem.moving == true)
+        {
+            foreach (Item item in items)
+            {
+                if (item.moving == true)
+                {
+                    stopping = false;
+                }
+            }
+
+            if (stopping == true)
+            {
+                stopFlames++;
+            } else
+            {
+                stopFlames = 0;
+            }
+
+            if (stopFlames >= 100)
+            {
+                serveNextItem();
+            }
+        }
+
+        if (stopFlames >= 100) {
+            stopFlames = 100;
+        }
+
         // scoreを文字列型にしてテキストに反映させる
         scoreText.text = score.ToString();
+    }
+
+
+    private void serveNextItem() {
+        Debug.Log("Serve Next");
     }
 
 }

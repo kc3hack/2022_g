@@ -8,12 +8,15 @@ public class Item : MonoBehaviour
 {
 
     Rigidbody2D rb; // Rigidbody2Dコンポーネントをスクリプトで操作する為の変数
-    bool moved;     // 「既に操作されたかどうか」
+    bool bePlaced;     // 「既に操作されたかどうか」
     int itemScore;  // （各種アイテムが持つ、固有のスコア　の予定）
+    float speed;    // スピード
+    public bool moving;
+
 
 
     // 最初に実行される
-    private void Start()
+    void Start()
     {
         // このスクリプトがアタッチされているGameObjectの、Rigidbody2Dコンポーネントを代入する
         rb = GetComponent<Rigidbody2D>();
@@ -22,7 +25,26 @@ public class Item : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
 
         // 「最初はまだ操作されていない」
-        moved = false;
+        bePlaced = false;
+
+        moving = false;
+    }
+
+
+    void Update() {
+        speed = rb.velocity.magnitude;
+
+        if (bePlaced)
+        {
+            if (speed >= 0.1f)
+            {
+                moving = true;
+            } else
+            {
+                moving = false;
+            }
+        }
+
     }
 
 
@@ -30,7 +52,7 @@ public class Item : MonoBehaviour
     void OnMouseDrag()
     {
         // もし操作済みでないならば
-        if (moved == false)
+        if (bePlaced == false)
         {
             // 画面上のマウスの座標を取り出す
             Vector2 pointScreen = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -48,13 +70,13 @@ public class Item : MonoBehaviour
     private void OnMouseUp()
     {
         // もし操作済みでないならば
-        if (moved == false)
+        if (bePlaced == false)
         {
             // Rigidbody2D の bodyType を Dynamic に変更する
             rb.bodyType = RigidbodyType2D.Dynamic;
 
             // 「操作済み」
-            moved = true;
+            bePlaced = true;
         }
     }
 
