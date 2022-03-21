@@ -12,6 +12,21 @@ public class InGameManager : MonoBehaviour
     [SerializeField] int score = 0;     // 現在のスコア
     [SerializeField] Text scoreText;    // スコアを表示するテキスト
 
+    List<Item> items;
+    Item currentItem;
+    GameObject currentItemGO;
+
+
+    void Start()
+    {
+        items = new List<>();
+    }
+
+
+    void FixedUpdate()
+    {
+    }
+
 
     // 0.02秒に1回（デフォルト値）の間隔で実行する
     void FixedUpdate()
