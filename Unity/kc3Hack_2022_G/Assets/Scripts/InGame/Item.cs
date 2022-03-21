@@ -13,7 +13,7 @@ public class Item : MonoBehaviour
     float speed;    // スピード
     public bool moving; // 「動いているかどうか」
     public string itemType; // どの種類のアイテムなのかを情報として持つ変数
-
+    public bool beDraged; // 「ドラッグされたかどうか」
 
 
     // 最初に実行される
@@ -30,6 +30,9 @@ public class Item : MonoBehaviour
 
         // 「最初はまだ動いていない」
         moving = false;
+
+        // 「最初はまだドラッグされていない」
+        beDraged = false;
     }
 
 
@@ -61,6 +64,9 @@ public class Item : MonoBehaviour
         // もし操作済みでないならば
         if (bePlaced == false)
         {
+            // 「ドラッグされた」
+            beDraged = true;
+            
             // 画面上のマウスの座標を取り出す
             Vector2 pointScreen = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
