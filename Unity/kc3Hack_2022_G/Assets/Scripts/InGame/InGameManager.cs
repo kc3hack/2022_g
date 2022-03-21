@@ -7,6 +7,8 @@ using UnityEngine.UI;
 // ゲーム内処理用スクリプト
 public class InGameManager : MonoBehaviour
 {
+    public UserInformationManager uim;
+    
 
     // [SerializeField]を付けて変数を宣言すると、public の変数でなくても Unity Editor側（inspector内）から中身を指定することが出来るようになる。
     [SerializeField] int score = 0;     // 現在のスコア
@@ -23,6 +25,8 @@ public class InGameManager : MonoBehaviour
 
     void Start()
     {
+        uim = GameObject.Find("UserInformationManager").GetComponent<UserInformationManager>();
+        
         items = new List<Item>();
         stopFlames = 0;
 
