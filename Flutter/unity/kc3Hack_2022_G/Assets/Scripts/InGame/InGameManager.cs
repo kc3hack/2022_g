@@ -32,6 +32,10 @@ public class InGameManager : MonoBehaviour
     // gameover
     private GameObject GameOverText;//gameover時のスコアテキスト 
     private GameObject GameOverButton;//gameover時のリスタートボタン
+
+    private Camera cam;     // MainCameraを格納する為の変数
+
+
     void Start()
     {
         // TitleSceneから存在する"UserInformationManager"GameObjectの、UserInformationManagerコンポーネントを格納する
@@ -66,6 +70,9 @@ public class InGameManager : MonoBehaviour
         // rotateButton 非表示
         rotateButtonL.SetActive(false);
         rotateButtonR.SetActive(false);
+
+        // MainCameraを取得
+        cam = Camera.main;
 
         // 開始1.0f秒後に、最初のアイテムを生成する
         Invoke("serveNextItem", 1.0f);
@@ -123,7 +130,11 @@ public class InGameManager : MonoBehaviour
                     // もし2秒以上、静止したままだったら
                     if (stopFlames >= 100)
                     {
+                        // スコア加算
                         addScore();
+
+                        // カメラを動かす
+                        moveCamera();
 
                         // 次のアイテムを生成する
                         serveNextItem();
@@ -206,4 +217,9 @@ public class InGameManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");//GameSceneを読み直す;
     }
 
+
+    // アイテムの配置状況に応じてカメラを移動させる
+    private void moveCamera() {
+        
+    }
 }

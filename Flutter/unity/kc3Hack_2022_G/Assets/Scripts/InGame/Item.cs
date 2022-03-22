@@ -54,7 +54,6 @@ public class Item : MonoBehaviour
                 moving = false;
             }
         }
-
     }
 
 
