@@ -33,6 +33,7 @@ public class DropTrigger : MonoBehaviour
                 rotateButtonR.SetActive(false);
                 igm.addScore(-50);
                 dropFlames = 0;
+                igm.DropItems++;//落としたアイテムの数を数える
             }
             Destroy(collision.gameObject);
         }
