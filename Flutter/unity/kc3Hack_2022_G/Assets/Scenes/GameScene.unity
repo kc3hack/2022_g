@@ -1706,6 +1706,8 @@ MonoBehaviour:
   - {fileID: 1774895879217478378, guid: b6d985ed7f6d1944f89a110a6a1f5a0f, type: 3}
   - {fileID: 2447466333664983824, guid: e6a9347d74ea2d3458017be47941f66a, type: 3}
   - {fileID: 1928313210468863604, guid: 7b89a48904139c64bb382b9e6596fe65, type: 3}
+  - {fileID: 4980400531616864697, guid: af1fec9300c119b4da23fac5ed909e8d, type: 3}
+  - {fileID: 2322221172736467934, guid: 4c09804fad2f98141b9902e1d09461cd, type: 3}
   rotateButtonL: {fileID: 975396522}
   rotateButtonR: {fileID: 2031851181}
   dt: {fileID: 912565923}

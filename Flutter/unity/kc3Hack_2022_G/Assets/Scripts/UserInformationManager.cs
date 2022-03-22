@@ -28,6 +28,8 @@ public class UserInformationManager : MonoBehaviour
         itemCounts.Add("shokupan", 1);
         itemCounts.Add("soda", 1);
         itemCounts.Add("chicken", 1);
+        itemCounts.Add("bottle", 1);
+        itemCounts.Add("snack", 1);
 
         Debug.Log("Loading Complete.");
     }
