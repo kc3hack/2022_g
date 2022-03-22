@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
     public bool moving; // 「動いているかどうか」
     public string itemType; // どの種類のアイテムなのかを情報として持つ変数
     public bool beDraged; // 「ドラッグされたかどうか」
+    public float height; // y座標を格納する為の変数
 
 
     // 最初に実行される
@@ -55,6 +56,7 @@ public class Item : MonoBehaviour
             }
         }
 
+        height = transform.position.y;
     }
 
 
