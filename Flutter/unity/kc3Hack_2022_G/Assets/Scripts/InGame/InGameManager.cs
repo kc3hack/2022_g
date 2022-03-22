@@ -220,6 +220,18 @@ public class InGameManager : MonoBehaviour
 
     // アイテムの配置状況に応じてカメラを移動させる
     private void moveCamera() {
-        
+
+        float maxHeight = -100;    // 一番上にあるアイテムのy座標を格納する為の変数
+
+        // 現在存在するアイテムの中で、一番上にあるアイテムのy座標を取得する
+        foreach (Item item in items)
+        {
+            if (item != null)
+            {
+                if (item.height > maxHeight) {
+                    maxHeight = item.height;
+                }
+            }
+        }
     }
 }
