@@ -34,6 +34,8 @@ public class InGameManager : MonoBehaviour
     private GameObject GameOverScoreText;//スコア用
     private GameObject GameOverScoreItemsText;//落としたアイテムの数用
     private GameObject GameOverButton;//ゲームオーバー時のリスタートボタン
+    public int DropItems=0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
+
 
     void Start()
     {
@@ -45,6 +47,7 @@ public class InGameManager : MonoBehaviour
         GameOverScoreText=GameObject.Find("GameOverScoreText");
         GameOverScoreItemsText=GameObject.Find("GameOverScoreItemsText");
         GameOverButton=GameObject.Find("GameOverButton");
+
         GameOverButton.SetActive(false);//RestartButtonを隠す
         ////
 
@@ -202,6 +205,7 @@ public class InGameManager : MonoBehaviour
         Debug.Log("GameOver!");
         GameOverText.GetComponent<Text>().text = "GameOver";//Gameoverを表示
         GameOverScoreText.GetComponent<Text>().text="Your Score\n"+score;//scoreを表示
+        GameOverScoreItemsText.GetComponent<Text>().text=$"あなたは\n{DropItems}個の食品を\n無駄にした";//落としたアイテムの数を表示
 
         GameOverButton.SetActive(true);//ボタンを表示
         
@@ -212,5 +216,5 @@ public class InGameManager : MonoBehaviour
         Debug.Log("Restart");
         SceneManager.LoadScene("GameScene");//GameSceneを読み直す;
     }
-
+    //
 }
