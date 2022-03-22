@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField] UserInformationManager uim;
+    [SerializeField] HowToPlayManager htpm;
     
     // まず最初に実行
     private void Start()
@@ -22,9 +23,15 @@ public class SceneChanger : MonoBehaviour
         switch (sceneName)
         {
             case "GameScene":
-                uim.loadItemCounts();
-                // 1.0f秒後、メソッド"ChangeToGameScene"を実行
-                Invoke("ChangeToGameScene", 1.0f);
+                if (htpm != null)
+                {
+                    if (htpm.beingHowToPlay == false)
+                    {
+                        uim.loadItemCounts();
+                        // 1.0f秒後、メソッド"ChangeToGameScene"を実行
+                        Invoke("ChangeToGameScene", 1.0f);
+                    }
+                }
                 break;
             default:
                 // ログに"SceneNameError"と表示
