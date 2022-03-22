@@ -158,7 +158,8 @@ public class InGameManager : MonoBehaviour
     // 次のアイテムを生成する
     private void serveNextItem() {
         int randomNumber = Random.Range(0, canUseItemGOList.Count);
-        currentItemGO = Instantiate(canUseItemGOList[randomNumber]);
+        Vector3 plusVec = new Vector3 (0.0f, 0.0f, 100.0f);
+        currentItemGO = Instantiate(canUseItemGOList[randomNumber], Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.85f, 0.0f)) + plusVec, Quaternion.identity);
         currentItem = currentItemGO.GetComponent<Item>();
 
         // itemsにcurrentItemを追加
