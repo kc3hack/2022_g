@@ -153,7 +153,8 @@ public class InGameManager : MonoBehaviour
     // 次のアイテムを生成する
     private void serveNextItem() {
         int randomNumber = Random.Range(0, canUseItemGOList.Count);
-        currentItemGO = Instantiate(canUseItemGOList[randomNumber]);
+        Vector3 plusVec = new Vector3(0.0f, 0.0f, 100.0f);
+        currentItemGO = Instantiate(canUseItemGOList[randomNumber], Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.85f, 0.0f)) + plusVec, Quaternion.identity);
         currentItem = currentItemGO.GetComponent<Item>();
 
         // itemsにcurrentItemを追加
@@ -235,15 +236,12 @@ public class InGameManager : MonoBehaviour
 
         Vector2 maxHeightVector = new Vector2(0, maxHeight);
 
-        //Vector2 maxHeightViweVec = Camera.main.WorldToViewportPoint(maxHeightVector);
         Vector2 maxHeightViweVec = Camera.main.WorldToViewportPoint(maxHeightVector);
 
-        Debug.Log(maxHeightViweVec);
         while (maxHeightViweVec.y > 0.6f) {
             cam.gameObject.transform.Translate(new Vector3(0.0f, 0.01f, 0.0f));
             
             maxHeightViweVec = Camera.main.WorldToViewportPoint(maxHeightVector);
-            Debug.Log(maxHeightViweVec);
         }
     }
 }
