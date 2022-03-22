@@ -15,8 +15,8 @@ public class InGameManager : MonoBehaviour
     [SerializeField] Text scoreText;    // スコアを表示するテキスト
 
     List<Item> items;   // 今存在するアイテムを管理する用のリスト
-    Item currentItem;   // 現在操作しているアイテム
-    GameObject currentItemGO;   // 現在操作しているアイテムのGameObject
+    public Item currentItem;   // 現在操作しているアイテム
+    public GameObject currentItemGO;   // 現在操作しているアイテムのGameObject
 
     int stopFlames; // 連続で静止しているフレーム数
 

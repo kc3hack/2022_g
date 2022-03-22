@@ -82,7 +82,15 @@ public class Item : MonoBehaviour
 
 
     // もしドラッグされ終わったら
-    private void OnMouseUp()
+    void OnMouseUp()
+    {
+        // 操作終了
+        finishOperate();
+    }
+
+
+    // 操作終了時の処理
+    public void finishOperate()
     {
         // もし操作済みでないならば
         if (bePlaced == false)
