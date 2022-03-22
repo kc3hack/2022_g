@@ -29,13 +29,13 @@ public class InGameManager : MonoBehaviour
 
     [SerializeField] private DropTrigger dt;    // DropTriggerの状態を格納する為の変数
 
-    // ゲームオーバー
+    //// ゲームオーバー
     private GameObject GameOverText;//ゲームオーバー時のテキスト 
     private GameObject GameOverScoreText;//スコア用
     private GameObject GameOverScoreItemsText;//落としたアイテムの数用
     private GameObject GameOverButton;//ゲームオーバー時のリスタートボタン
     public int DropItems=0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
-
+    ////
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class InGameManager : MonoBehaviour
         uim = GameObject.Find("UserInformationManager").GetComponent<UserInformationManager>();
 
         ////ゲームオーバー
-        GameOverText=GameObject.Find("GameOverText");
+        GameOverText=GameObject.Find("GameOverText");//それぞれのGameObjectを探す
         GameOverScoreText=GameObject.Find("GameOverScoreText");
         GameOverScoreItemsText=GameObject.Find("GameOverScoreItemsText");
         GameOverButton=GameObject.Find("GameOverButton");
@@ -199,7 +199,7 @@ public class InGameManager : MonoBehaviour
     }
 
 
-    // ゲームオーバー時の処理
+    //// ゲームオーバー時の処理
     public void doGameOver()
     {
         Debug.Log("GameOver!");
@@ -210,11 +210,11 @@ public class InGameManager : MonoBehaviour
         GameOverButton.SetActive(true);//ボタンを表示
         
     }
-
-    public void RestartButton()//RestartButtonを押したときの処理
+    ////RestartButtonを押したときの処理
+    public void RestartButton()
     {
         Debug.Log("Restart");
         SceneManager.LoadScene("GameScene");//GameSceneを読み直す;
     }
-    //
+    ////
 }
