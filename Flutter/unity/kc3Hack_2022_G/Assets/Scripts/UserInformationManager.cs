@@ -24,10 +24,12 @@ public class UserInformationManager : MonoBehaviour
             Debug.Log("^ ~~ ^");
         }
         // テスト用
-        itemCounts.Add("onigiri", 1);
-        itemCounts.Add("shokupan", 1);
+        itemCounts.Add("onigiri", 0);
+        itemCounts.Add("shokupan", 0);
         itemCounts.Add("soda", 1);
-        itemCounts.Add("chicken", 1);
+        itemCounts.Add("chicken", 0);
+        itemCounts.Add("bottle", 0);
+        itemCounts.Add("snack", 0);
 
         Debug.Log("Loading Complete.");
     }

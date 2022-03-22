@@ -36,6 +36,9 @@ public class InGameManager : MonoBehaviour
     private GameObject GameOverButton;//ゲームオーバー時のリスタートボタン
     public int DropItems=0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
     ////
+    
+
+
 
     void Start()
     {
@@ -131,7 +134,11 @@ public class InGameManager : MonoBehaviour
                     // もし2秒以上、静止したままだったら
                     if (stopFlames >= 100)
                     {
+                        // スコア加算
                         addScore();
+
+                        // カメラ移動
+                        moveCamera();
 
                         // 次のアイテムを生成する
                         serveNextItem();
@@ -151,7 +158,8 @@ public class InGameManager : MonoBehaviour
     // 次のアイテムを生成する
     private void serveNextItem() {
         int randomNumber = Random.Range(0, canUseItemGOList.Count);
-        currentItemGO = Instantiate(canUseItemGOList[randomNumber]);
+        Vector3 plusVec = new Vector3 (0.0f, 0.0f, 100.0f);
+        currentItemGO = Instantiate(canUseItemGOList[randomNumber], Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.85f, 0.0f)) + plusVec, Quaternion.identity);
         currentItem = currentItemGO.GetComponent<Item>();
 
         // itemsにcurrentItemを追加
@@ -217,4 +225,31 @@ public class InGameManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");//GameSceneを読み直す;
     }
     ////
+
+    private void moveCamera() {
+        float maxHeight = -100;
+
+        foreach (Item item in items)
+        {
+            if (item != null)
+            {
+                if (item.height > maxHeight)
+                {
+                    maxHeight = item.height;
+                }
+            }
+        }
+
+        Vector2 maxHeightWorldVec = new Vector2(0, maxHeight);
+
+        Vector2 maxHeightViewVec = Camera.main.WorldToViewportPoint(maxHeightWorldVec);
+
+        while (maxHeightViewVec.y > 0.6f) {
+            Camera.main.gameObject.transform.Translate(new Vector3(0.0f, 0.01f, 0.0f));
+
+            maxHeightViewVec = Camera.main.WorldToViewportPoint(maxHeightWorldVec);
+        }
+    }
+
+
 }
