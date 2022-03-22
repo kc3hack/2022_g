@@ -33,7 +33,7 @@ public class InGameManager : MonoBehaviour
     private GameObject GameOverText;//gameover時のスコアテキスト 
     private GameObject GameOverButton;//gameover時のリスタートボタン
 
-    private Camera cam;     // MainCameraを格納する為の変数
+    private Camera cam;
 
 
     void Start()
@@ -71,7 +71,6 @@ public class InGameManager : MonoBehaviour
         rotateButtonL.SetActive(false);
         rotateButtonR.SetActive(false);
 
-        // MainCameraを取得
         cam = Camera.main;
 
         // 開始1.0f秒後に、最初のアイテムを生成する
@@ -221,7 +220,7 @@ public class InGameManager : MonoBehaviour
     // アイテムの配置状況に応じてカメラを移動させる
     private void moveCamera() {
 
-        float maxHeight = -100;    // 一番上にあるアイテムのy座標を格納する為の変数
+        float maxHeight = -100.0f;    // 一番上にあるアイテムのy座標を格納する為の変数
 
         // 現在存在するアイテムの中で、一番上にあるアイテムのy座標を取得する
         foreach (Item item in items)
@@ -232,6 +231,19 @@ public class InGameManager : MonoBehaviour
                     maxHeight = item.height;
                 }
             }
+        }
+
+        Vector2 maxHeightVector = new Vector2(0, maxHeight);
+
+        //Vector2 maxHeightViweVec = Camera.main.WorldToViewportPoint(maxHeightVector);
+        Vector2 maxHeightViweVec = Camera.main.WorldToViewportPoint(maxHeightVector);
+
+        Debug.Log(maxHeightViweVec);
+        while (maxHeightViweVec.y > 0.6f) {
+            cam.gameObject.transform.Translate(new Vector3(0.0f, 0.01f, 0.0f));
+            
+            maxHeightViweVec = Camera.main.WorldToViewportPoint(maxHeightVector);
+            Debug.Log(maxHeightViweVec);
         }
     }
 }

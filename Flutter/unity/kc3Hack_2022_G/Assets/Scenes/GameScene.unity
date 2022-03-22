@@ -1711,6 +1711,7 @@ MonoBehaviour:
   rotateButtonL: {fileID: 975396522}
   rotateButtonR: {fileID: 2031851181}
   dt: {fileID: 912565923}
+  camGO: {fileID: 4870817}
 --- !u!1 &2031851181
 GameObject:
   m_ObjectHideFlags: 0
