@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DropTrigger : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class DropTrigger : MonoBehaviour
     [SerializeField] GameObject rotateButtonL;
     [SerializeField] GameObject rotateButtonR;
     [SerializeField] GameObject giveupButton;
+    [SerializeField] GameObject gameoverCountTextGO;
+    Text gameoverCountText;
+    float gameoverCount;
     private int dropFlames;
     private bool gameStop;
 
@@ -19,6 +23,7 @@ public class DropTrigger : MonoBehaviour
         beGameOver = false;
         dropFlames = 0;
         gameStop = false;
+        gameoverCountText = gameoverCountTextGO.GetComponent<Text>();
     }
 
     // Triggerの中に何かが入った時
@@ -45,6 +50,9 @@ public class DropTrigger : MonoBehaviour
         rotateButtonL.SetActive(false);
         rotateButtonR.SetActive(false);
         giveupButton.SetActive(false);
+        gameoverCountTextGO.SetActive(true);
+        gameoverCount = 3.00f;
+        gameoverCountText.text = gameoverCount.ToString("f2");
         
         dropFlames = 0;
     }
@@ -64,11 +72,14 @@ public class DropTrigger : MonoBehaviour
     {
         if (beGameOver) {
             dropFlames++;
+            gameoverCount -= 0.02f;
+            gameoverCountText.text = gameoverCount.ToString("f2");
         }
 
         if (dropFlames >= 150) {
             dropFlames = 0;
             gameStop = true;
+            gameoverCountTextGO.SetActive(false);
             igm.doGameOver();
         }
     }
