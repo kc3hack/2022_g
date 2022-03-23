@@ -26,6 +26,7 @@ public class InGameManager : MonoBehaviour
     // アイテム回転用ボタンを格納する為の変数
     [SerializeField] private GameObject rotateButtonL;  // 左（反時計回り用）
     [SerializeField] private GameObject rotateButtonR;  // 右（時計回り用）
+    [SerializeField] private GameObject giveupButton;   // ギブアップ用のボタン
 
     [SerializeField] private DropTrigger dt;    // DropTriggerの状態を格納する為の変数
 
@@ -77,6 +78,7 @@ public class InGameManager : MonoBehaviour
         // rotateButton 非表示
         rotateButtonL.SetActive(false);
         rotateButtonR.SetActive(false);
+        giveupButton.SetActive(false);
 
         // 開始1.0f秒後に、最初のアイテムを生成する
         Invoke("serveNextItem", 1.0f);
@@ -96,6 +98,7 @@ public class InGameManager : MonoBehaviour
                 {
                     rotateButtonL.SetActive(false);
                     rotateButtonR.SetActive(false);
+                    giveupButton.SetActive(false);
                 }
             }
 
@@ -168,6 +171,7 @@ public class InGameManager : MonoBehaviour
         // rotateButton 表示
         rotateButtonL.SetActive(true);
         rotateButtonR.SetActive(true);
+        giveupButton.SetActive(true);
     }
 
 
@@ -213,11 +217,15 @@ public class InGameManager : MonoBehaviour
         Debug.Log("GameOver!");
         GameOverText.GetComponent<Text>().text = "GameOver";//Gameoverを表示
         GameOverScoreText.GetComponent<Text>().text="Your Score\n"+score;//scoreを表示
-        GameOverScoreItemsText.GetComponent<Text>().text=$"あなたは\n{DropItems}個の食品を\n無駄にした";//落としたアイテムの数を表示
+        if (DropItems != 0)
+        {
+            GameOverScoreItemsText.GetComponent<Text>().text = $"あなたは\n{DropItems}個の食品を\n無駄にした";//落としたアイテムの数を表示
+        }
 
         GameOverButton.SetActive(true);//ボタンを表示
         
     }
+
     ////RestartButtonを押したときの処理
     public void RestartButton()
     {

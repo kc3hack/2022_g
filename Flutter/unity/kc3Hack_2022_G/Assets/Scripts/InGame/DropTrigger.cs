@@ -9,6 +9,7 @@ public class DropTrigger : MonoBehaviour
     [SerializeField] InGameManager igm;
     [SerializeField] GameObject rotateButtonL;
     [SerializeField] GameObject rotateButtonR;
+    [SerializeField] GameObject giveupButton;
     private int dropFlames;
     private bool gameStop;
 
@@ -28,14 +29,33 @@ public class DropTrigger : MonoBehaviour
         {
             if (gameStop != true)
             {
-                beGameOver = true;
-                rotateButtonL.SetActive(false);
-                rotateButtonR.SetActive(false);
+                makeGameOver();
                 igm.addScore(-50);
-                dropFlames = 0;
                 igm.DropItems++;//落としたアイテムの数を数える
             }
             Destroy(collision.gameObject);
+        }
+    }
+
+
+    // ギブアップ時含め、GameOver前の処理
+    public void makeGameOver()
+    {
+        beGameOver = true;
+        rotateButtonL.SetActive(false);
+        rotateButtonR.SetActive(false);
+        giveupButton.SetActive(false);
+        
+        dropFlames = 0;
+    }
+
+
+    public void Giveup()
+    {
+        if (igm.currentItemGO != null)
+        {
+            igm.currentItemGO.SetActive(false);
+            makeGameOver();
         }
     }
 

@@ -755,6 +755,7 @@ MonoBehaviour:
   igm: {fileID: 2005044308}
   rotateButtonL: {fileID: 975396522}
   rotateButtonR: {fileID: 2031851181}
+  giveupButton: {fileID: 978267781}
 --- !u!1 &975396522
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +971,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 978267784}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 912565923}
+        m_TargetAssemblyTypeName: DropTrigger, Assembly-CSharp
+        m_MethodName: Giveup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &978267784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2197,6 +2210,7 @@ MonoBehaviour:
   - {fileID: 3260191063138287845, guid: f061c553be59a184cab1e06905dc0063, type: 3}
   rotateButtonL: {fileID: 975396522}
   rotateButtonR: {fileID: 2031851181}
+  giveupButton: {fileID: 978267781}
   dt: {fileID: 912565923}
   DropItems: 0
 --- !u!1 &2031851181
