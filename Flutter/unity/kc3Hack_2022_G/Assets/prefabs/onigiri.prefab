@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1715119763458182192}
   - component: {fileID: 1715119763458182193}
   - component: {fileID: 1715119763458182198}
+  - component: {fileID: 8131321529433007278}
   m_Layer: 0
   m_Name: onigiri
   m_TagString: Item
@@ -197,5 +198,18 @@ MonoBehaviour:
   bePlaced: 0
   itemBaseScore: 10
   moving: 0
-  beTouched: 0
   itemType: onigiri
+  beDraged: 0
+  height: 0
+--- !u!114 &8131321529433007278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715119763458182196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a15d4bb98f18ea4abf3cd2e5715549a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
