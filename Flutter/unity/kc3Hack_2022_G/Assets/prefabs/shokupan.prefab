@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1047062935158755382}
   - component: {fileID: 4267060151741830351}
   - component: {fileID: 6100442585144167813}
+  - component: {fileID: 7036981202988861263}
   m_Layer: 0
   m_Name: shokupan
   m_TagString: Item
@@ -210,5 +211,18 @@ MonoBehaviour:
   bePlaced: 0
   itemBaseScore: 10
   moving: 0
-  beTouched: 0
   itemType: shokupan
+  beDraged: 0
+  height: 0
+--- !u!114 &7036981202988861263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774895879217478378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a15d4bb98f18ea4abf3cd2e5715549a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

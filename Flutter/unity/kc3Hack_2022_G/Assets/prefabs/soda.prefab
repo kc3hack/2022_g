@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8770244422423620071}
   - component: {fileID: 5153764859659971655}
   - component: {fileID: 5314727155778060542}
+  - component: {fileID: 4167630890462999040}
   m_Layer: 0
   m_Name: soda
   m_TagString: Item
@@ -207,5 +208,18 @@ MonoBehaviour:
   bePlaced: 0
   itemBaseScore: 15
   moving: 0
-  beTouched: 0
   itemType: soda
+  beDraged: 0
+  height: 0
+--- !u!114 &4167630890462999040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928313210468863604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a15d4bb98f18ea4abf3cd2e5715549a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
