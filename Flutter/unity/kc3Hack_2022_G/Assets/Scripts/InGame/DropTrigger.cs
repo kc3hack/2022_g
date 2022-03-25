@@ -17,6 +17,12 @@ public class DropTrigger : MonoBehaviour
     private int dropFlames;
     private bool gameStop;
 
+    AudioSourceManager asm;
+    [SerializeField] AudioClip fallAC;
+    [SerializeField] AudioClip stopAC;
+    [SerializeField] AudioClip countAC;
+    bool playCountSe1, playCountSe2;
+
 
     private void Start()
     {
@@ -24,6 +30,9 @@ public class DropTrigger : MonoBehaviour
         dropFlames = 0;
         gameStop = false;
         gameoverCountText = gameoverCountTextGO.GetComponent<Text>();
+        asm = GameObject.Find("AudioSourceManager").GetComponent<AudioSourceManager>();
+        playCountSe1 = false;
+        playCountSe2 = false;
     }
 
     // Triggerの中に何かが入った時
@@ -34,6 +43,7 @@ public class DropTrigger : MonoBehaviour
         {
             if (gameStop != true)
             {
+                asm.playSe(fallAC);
                 makeGameOver();
                 igm.addScore(-50);
                 igm.DropItems++;//落としたアイテムの数を数える
@@ -53,6 +63,9 @@ public class DropTrigger : MonoBehaviour
         gameoverCountTextGO.SetActive(true);
         gameoverCount = 3.00f;
         gameoverCountText.text = gameoverCount.ToString("f2");
+
+        playCountSe1 = false;
+        playCountSe2 = false;
         
         dropFlames = 0;
     }
@@ -62,6 +75,7 @@ public class DropTrigger : MonoBehaviour
     {
         if (igm.currentItemGO != null)
         {
+            asm.playSe(stopAC);
             igm.currentItemGO.SetActive(false);
             makeGameOver();
         }
@@ -74,6 +88,19 @@ public class DropTrigger : MonoBehaviour
             dropFlames++;
             gameoverCount -= 0.02f;
             gameoverCountText.text = gameoverCount.ToString("f2");
+
+            // 残り2秒の時に音を鳴らす
+            if ((gameoverCount <= 2.00f) && (playCountSe2 == false)) {
+                asm.playSe(countAC);
+                playCountSe2 = true;
+            }
+
+            // 残り1秒の時に音を鳴らす
+            if ((gameoverCount <= 1.00f) && (playCountSe1 == false))
+            {
+                asm.playSe(countAC);
+                playCountSe1 = true;
+            }
         }
 
         if (dropFlames >= 150) {
