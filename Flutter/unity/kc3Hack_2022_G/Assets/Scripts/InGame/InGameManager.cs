@@ -37,12 +37,16 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private GameObject GameOverButton;//ゲームオーバー時のリスタートボタン
     public int DropItems=0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
     [SerializeField] GameObject gameoverBackGround;
+    private bool gameFlag;  // ゲーム中であることを示す変数
     ////
 
     AudioSourceManager asm;
     [SerializeField] AudioClip rotateAC;
     [SerializeField] AudioClip decideAC;
     [SerializeField] AudioClip addScoreAC;
+    [SerializeField] AudioClip displayScoreAC;
+    [SerializeField] AudioClip displayDropItemsAC;
+    [SerializeField] AudioClip makeGameOverAC;
 
 
 
@@ -84,6 +88,7 @@ public class InGameManager : MonoBehaviour
         GameOverScoreText.SetActive(false);
         GameOverScoreItemsText.SetActive(false);
         GameOverButton.SetActive(false);
+        gameFlag = true;
 
         // 開始1.0f秒後に、最初のアイテムを生成する
         Invoke("serveNextItem", 1.0f);
@@ -222,17 +227,24 @@ public class InGameManager : MonoBehaviour
     //// ゲームオーバー時の処理
     public void doGameOver()
     {
-        Debug.Log("GameOver!");
-        gameoverBackGround.SetActive(true);
-        GameOverText.GetComponent<Text>().text = "GameOver";//Gameoverを表示
-        
-        GameOverScoreText.GetComponent<Text>().text="Your Score\n"+score;//scoreを表示
-        Invoke("activateGameOverScoreText", 0.5f);
+        if (gameFlag == true)
+        {
+            gameFlag = false;
+            Debug.Log("GameOver!");
+            GameOverText.GetComponent<Text>().text = "GameOver";//Gameoverを表示
+            gameoverBackGround.SetActive(true);
+
+            asm.playSe(makeGameOverAC);
+
+            GameOverScoreText.GetComponent<Text>().text = "Your Score\n" + score;//scoreを表示
+            Invoke("activateGameOverScoreText", 0.5f);
+        }
     }
 
 
     public void activateGameOverScoreText() {
         GameOverScoreText.SetActive(true);
+        asm.playSe(displayScoreAC);
 
         if (DropItems != 0)
         {
@@ -246,12 +258,14 @@ public class InGameManager : MonoBehaviour
 
     public void activateGameOverScoreItemsText() {
         GameOverScoreItemsText.SetActive(true);
+        asm.playSe(displayDropItemsAC);
         Invoke("activateGameOverButton", 0.5f);
     }
 
 
     public void activateGameOverButton() {
         GameOverButton.SetActive(true);
+        asm.playSe(decideAC);
     }
 
 
