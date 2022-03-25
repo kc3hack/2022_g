@@ -28,6 +28,8 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private GameObject rotateButtonR;  // 右（時計回り用）
     [SerializeField] private GameObject giveupButton;   // ギブアップ用のボタン
 
+    [SerializeField] private GameObject giveupCancelButton;//ギブアップをキャンセルするボタン（押し間違えをしてしまうことを考えて） 
+
     [SerializeField] private DropTrigger dt;    // DropTriggerの状態を格納する為の変数
 
     //// ゲームオーバー
@@ -35,7 +37,7 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private GameObject GameOverScoreText;//スコア用
     [SerializeField] private GameObject GameOverScoreItemsText;//落としたアイテムの数用
     [SerializeField] private GameObject GameOverButton;//ゲームオーバー時のリスタートボタン
-    public int DropItems=0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
+    public int DropItems = 0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
     [SerializeField] GameObject gameoverBackGround;
     private bool gameFlag;  // ゲーム中であることを示す変数
     ////
@@ -89,6 +91,7 @@ public class InGameManager : MonoBehaviour
         rotateButtonL.SetActive(false);
         rotateButtonR.SetActive(false);
         giveupButton.SetActive(false);
+        giveupCancelButton.SetActive(false);
 
         asm = GameObject.Find("AudioSourceManager").GetComponent<AudioSourceManager>();
 
@@ -101,7 +104,8 @@ public class InGameManager : MonoBehaviour
     }
 
 
-    private void gameStart() {
+    private void gameStart()
+    {
         startCount = 3;
         startBackground.SetActive(true);
         startCountText.SetActive(true);
@@ -111,17 +115,21 @@ public class InGameManager : MonoBehaviour
 
         Invoke("startTextCount", 1.0f);
 
-        
+
     }
 
 
-    private void startTextCount() {
+    private void startTextCount()
+    {
         startCount--;
-        if (startCount > 0) {
+        if (startCount > 0)
+        {
             startCountText.GetComponent<Text>().text = startCount.ToString();
             asm.playSe(countAC);
             Invoke("startTextCount", 1.0f);
-        } else {
+        }
+        else
+        {
             startBackground.SetActive(false);
             serveNextItem();
         }
@@ -171,7 +179,8 @@ public class InGameManager : MonoBehaviour
                     {
                         // 静止しているフレーム数を+1
                         stopFlames++;
-                    } else // そうでないなら
+                    }
+                    else // そうでないなら
                     {
                         // 判定やり直し
                         stopFlames = 0;
@@ -195,16 +204,18 @@ public class InGameManager : MonoBehaviour
 
 
         // int型の整数がオーバーフロー（管理できる整数の値の範囲を超える）するのを防ぐ
-        if (stopFlames >= 100) {
+        if (stopFlames >= 100)
+        {
             stopFlames = 0;
         }
     }
 
 
     // 次のアイテムを生成する
-    private void serveNextItem() {
+    private void serveNextItem()
+    {
         int randomNumber = Random.Range(0, canUseItemGOList.Count);
-        Vector3 plusVec = new Vector3 (0.0f, 0.0f, 100.0f);
+        Vector3 plusVec = new Vector3(0.0f, 0.0f, 100.0f);
         currentItemGO = Instantiate(canUseItemGOList[randomNumber], Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.85f, 0.0f)) + plusVec, Quaternion.identity);
         currentItem = currentItemGO.GetComponent<Item>();
 
@@ -219,7 +230,8 @@ public class InGameManager : MonoBehaviour
 
 
     // スコアを加算するメソッド
-    private void addScore() {
+    private void addScore()
+    {
         if (currentItem != null)
         {
             // （itemBaseScore + 2 * （購入回数 - 1））を加算　（一旦）
@@ -275,7 +287,8 @@ public class InGameManager : MonoBehaviour
     }
 
 
-    public void activateGameOverScoreText() {
+    public void activateGameOverScoreText()
+    {
         GameOverScoreText.SetActive(true);
         asm.playSe(displayScoreAC);
 
@@ -283,20 +296,24 @@ public class InGameManager : MonoBehaviour
         {
             GameOverScoreItemsText.GetComponent<Text>().text = $"あなたは\n{DropItems}個の食品を\n無駄にしました";//落としたアイテムの数を表示
             Invoke("activateGameOverScoreItemsText", 0.5f);
-        } else {
+        }
+        else
+        {
             Invoke("activateGameOverButton", 0.5f);
         }
     }
 
 
-    public void activateGameOverScoreItemsText() {
+    public void activateGameOverScoreItemsText()
+    {
         GameOverScoreItemsText.SetActive(true);
         asm.playSe(displayDropItemsAC);
         Invoke("activateGameOverButton", 0.5f);
     }
 
 
-    public void activateGameOverButton() {
+    public void activateGameOverButton()
+    {
         GameOverButton.SetActive(true);
         asm.playSe(decideAC);
     }
@@ -311,7 +328,8 @@ public class InGameManager : MonoBehaviour
     }
     ////
 
-    private void moveCamera() {
+    private void moveCamera()
+    {
         float maxHeight = -100;
 
         foreach (Item item in items)
@@ -329,7 +347,8 @@ public class InGameManager : MonoBehaviour
 
         Vector2 maxHeightViewVec = Camera.main.WorldToViewportPoint(maxHeightWorldVec);
 
-        while (maxHeightViewVec.y > 0.6f) {
+        while (maxHeightViewVec.y > 0.6f)
+        {
             Camera.main.gameObject.transform.Translate(new Vector3(0.0f, 0.01f, 0.0f));
 
             maxHeightViewVec = Camera.main.WorldToViewportPoint(maxHeightWorldVec);
