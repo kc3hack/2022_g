@@ -8,6 +8,8 @@ public class SceneChanger : MonoBehaviour
 {
     [SerializeField] UserInformationManager uim;
     [SerializeField] HowToPlayManager htpm;
+    [SerializeField] AudioSourceManager asm;
+    [SerializeField] AudioClip decideAC;
     
     // まず最初に実行
     private void Start()
@@ -27,6 +29,7 @@ public class SceneChanger : MonoBehaviour
                 {
                     if (htpm.beingHowToPlay == false)
                     {
+                        asm.playSe(decideAC);
                         uim.loadItemCounts();
                         // 1.0f秒後、メソッド"ChangeToGameScene"を実行
                         Invoke("ChangeToGameScene", 1.0f);
