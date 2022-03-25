@@ -41,6 +41,7 @@ public class InGameManager : MonoBehaviour
     AudioSourceManager asm;
     [SerializeField] AudioClip rotateAC;
     [SerializeField] AudioClip decideAC;
+    [SerializeField] AudioClip addScoreAC;
 
 
 
@@ -189,6 +190,8 @@ public class InGameManager : MonoBehaviour
 
             // scoreを文字列型にしてテキストに反映させる
             scoreText.text = score.ToString();
+
+            asm.playSe(addScoreAC);
         }
     }
 
