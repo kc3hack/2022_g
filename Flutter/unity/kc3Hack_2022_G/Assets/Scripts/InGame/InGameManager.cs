@@ -31,16 +31,27 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private DropTrigger dt;    // DropTriggerの状態を格納する為の変数
 
     //// ゲームオーバー
-    private GameObject GameOverText;//ゲームオーバー時のテキスト 
-    private GameObject GameOverScoreText;//スコア用
-    private GameObject GameOverScoreItemsText;//落としたアイテムの数用
-    private GameObject GameOverButton;//ゲームオーバー時のリスタートボタン
+    [SerializeField] private GameObject GameOverText;//ゲームオーバー時のテキスト 
+    [SerializeField] private GameObject GameOverScoreText;//スコア用
+    [SerializeField] private GameObject GameOverScoreItemsText;//落としたアイテムの数用
+    [SerializeField] private GameObject GameOverButton;//ゲームオーバー時のリスタートボタン
     public int DropItems=0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
-                           ////
+    [SerializeField] GameObject gameoverBackGround;
+    private bool gameFlag;  // ゲーム中であることを示す変数
+                            ////
+
+    [SerializeField] private GameObject startBackground;
+    [SerializeField] private GameObject startCountText;
+    private int startCount;
 
     AudioSourceManager asm;
     [SerializeField] AudioClip rotateAC;
     [SerializeField] AudioClip decideAC;
+    [SerializeField] AudioClip addScoreAC;
+    [SerializeField] AudioClip displayScoreAC;
+    [SerializeField] AudioClip displayDropItemsAC;
+    [SerializeField] AudioClip makeGameOverAC;
+    [SerializeField] AudioClip countAC;
 
 
 
@@ -48,12 +59,6 @@ public class InGameManager : MonoBehaviour
     {
         // TitleSceneから存在する"UserInformationManager"GameObjectの、UserInformationManagerコンポーネントを格納する
         uim = GameObject.Find("UserInformationManager").GetComponent<UserInformationManager>();
-
-        ////ゲームオーバー
-        GameOverText=GameObject.Find("GameOverText");//それぞれのGameObjectを探す
-        GameOverScoreText=GameObject.Find("GameOverScoreText");
-        GameOverScoreItemsText=GameObject.Find("GameOverScoreItemsText");
-        GameOverButton=GameObject.Find("GameOverButton");
 
         GameOverButton.SetActive(false);//RestartButtonを隠す
         ////
@@ -85,8 +90,39 @@ public class InGameManager : MonoBehaviour
 
         asm = GameObject.Find("AudioSourceManager").GetComponent<AudioSourceManager>();
 
-        // 開始1.0f秒後に、最初のアイテムを生成する
-        Invoke("serveNextItem", 1.0f);
+        GameOverScoreText.SetActive(false);
+        GameOverScoreItemsText.SetActive(false);
+        GameOverButton.SetActive(false);
+        gameFlag = true;
+
+        gameStart();
+    }
+
+
+    private void gameStart() {
+        startCount = 3;
+        startBackground.SetActive(true);
+        startCountText.SetActive(true);
+        startCountText.GetComponent<Text>().text = startCount.ToString();
+
+        asm.playSe(countAC);
+
+        Invoke("startTextCount", 1.0f);
+
+        
+    }
+
+
+    private void startTextCount() {
+        startCount--;
+        if (startCount > 0) {
+            startCountText.GetComponent<Text>().text = startCount.ToString();
+            asm.playSe(countAC);
+            Invoke("startTextCount", 1.0f);
+        } else {
+            startBackground.SetActive(false);
+            serveNextItem();
+        }
     }
 
 
@@ -189,6 +225,8 @@ public class InGameManager : MonoBehaviour
 
             // scoreを文字列型にしてテキストに反映させる
             scoreText.text = score.ToString();
+
+            asm.playSe(addScoreAC);
         }
     }
 
@@ -220,17 +258,47 @@ public class InGameManager : MonoBehaviour
     //// ゲームオーバー時の処理
     public void doGameOver()
     {
-        Debug.Log("GameOver!");
-        GameOverText.GetComponent<Text>().text = "GameOver";//Gameoverを表示
-        GameOverScoreText.GetComponent<Text>().text="Your Score\n"+score;//scoreを表示
+        if (gameFlag == true)
+        {
+            gameFlag = false;
+            Debug.Log("GameOver!");
+            GameOverText.GetComponent<Text>().text = "GameOver";//Gameoverを表示
+            gameoverBackGround.SetActive(true);
+
+            asm.playSe(makeGameOverAC);
+
+            GameOverScoreText.GetComponent<Text>().text = "Your Score\n" + score;//scoreを表示
+            Invoke("activateGameOverScoreText", 0.5f);
+        }
+    }
+
+
+    public void activateGameOverScoreText() {
+        GameOverScoreText.SetActive(true);
+        asm.playSe(displayScoreAC);
+
         if (DropItems != 0)
         {
             GameOverScoreItemsText.GetComponent<Text>().text = $"あなたは\n{DropItems}個の食品を\n無駄にしました";//落としたアイテムの数を表示
+            Invoke("activateGameOverScoreItemsText", 0.5f);
+        } else {
+            Invoke("activateGameOverButton", 0.5f);
         }
-
-        GameOverButton.SetActive(true);//ボタンを表示
-        
     }
+
+
+    public void activateGameOverScoreItemsText() {
+        GameOverScoreItemsText.SetActive(true);
+        asm.playSe(displayDropItemsAC);
+        Invoke("activateGameOverButton", 0.5f);
+    }
+
+
+    public void activateGameOverButton() {
+        GameOverButton.SetActive(true);
+        asm.playSe(decideAC);
+    }
+
 
     ////RestartButtonを押したときの処理
     public void RestartButton()
