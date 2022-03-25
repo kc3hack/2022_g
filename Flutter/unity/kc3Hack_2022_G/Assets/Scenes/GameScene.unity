@@ -1173,7 +1173,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 'aaaa
+
+'
 --- !u!222 &1147804384
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1754,7 +1756,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: aaaa
 --- !u!222 &1577746856
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1922,14 +1924,14 @@ RectTransform:
   m_GameObject: {fileID: 1833697768}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.06800702, y: 0.03738999, z: 1}
+  m_LocalScale: {x: 0.09218439, y: 0.050682608, z: 1.3555127}
   m_Children: []
   m_Father: {fileID: 1318884594}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.8694992}
+  m_AnchoredPosition: {x: 0, y: 6}
   m_SizeDelta: {x: 735.5811, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1833697770
@@ -1965,7 +1967,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: GameOver
 --- !u!222 &1833697771
 CanvasRenderer:
   m_ObjectHideFlags: 0
