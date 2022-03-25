@@ -88,10 +88,14 @@ public class DropTrigger : MonoBehaviour
             dropFlames++;
             gameoverCount -= 0.02f;
             gameoverCountText.text = gameoverCount.ToString("f2");
+
+            // 残り2秒の時に音を鳴らす
             if ((gameoverCount <= 2.00f) && (playCountSe2 == false)) {
                 asm.playSe(countAC);
                 playCountSe2 = true;
             }
+
+            // 残り1秒の時に音を鳴らす
             if ((gameoverCount <= 1.00f) && (playCountSe1 == false))
             {
                 asm.playSe(countAC);
