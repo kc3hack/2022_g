@@ -86,6 +86,8 @@ public class DropTrigger : MonoBehaviour
         }
     }
 
+    //giveupをキャンセルする→続ける
+    //giveupの処理をひっくり返しただけ(時間は触らず)
     public void GiveupCancel()
     {
         if (giveupManage == true)
