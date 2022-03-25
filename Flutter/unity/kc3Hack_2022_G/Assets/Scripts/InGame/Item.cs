@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 // アイテムの特徴用スクリプト
@@ -15,6 +16,7 @@ public class Item : MonoBehaviour
     public string itemType; // どの種類のアイテムなのかを情報として持つ変数
     public bool beDraged; // 「ドラッグされたかどうか」
     public float height; // y座標を格納する為の変数
+    private Text dontTouchThisText;
 
 
     // 最初に実行される
@@ -34,6 +36,8 @@ public class Item : MonoBehaviour
 
         // 「最初はまだドラッグされていない」
         beDraged = false;
+
+        dontTouchThisText = GameObject.Find("DontTouchThisText").GetComponent<Text>();
     }
 
 
@@ -77,6 +81,8 @@ public class Item : MonoBehaviour
 
             // 変換した座標の位置に、アイテムを動かす
             this.transform.position = pointWorld;
+
+            dontTouchThisText.text = "↑ Don't touch! ↑";
         }
     }
 
@@ -100,6 +106,8 @@ public class Item : MonoBehaviour
 
             // 「操作済み」
             bePlaced = true;
+
+            dontTouchThisText.text = "";
         }
     }
 

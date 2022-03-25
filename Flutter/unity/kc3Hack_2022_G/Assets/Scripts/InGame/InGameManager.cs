@@ -38,12 +38,14 @@ public class InGameManager : MonoBehaviour
     public int DropItems=0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
     [SerializeField] GameObject gameoverBackGround;
     private bool gameFlag;  // ゲーム中であることを示す変数
-                            ////
+    ////
 
+    // 開始時のカウント用変数
     [SerializeField] private GameObject startBackground;
     [SerializeField] private GameObject startCountText;
     private int startCount;
 
+    // 音源たち
     AudioSourceManager asm;
     [SerializeField] AudioClip rotateAC;
     [SerializeField] AudioClip decideAC;
