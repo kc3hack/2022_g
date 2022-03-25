@@ -38,7 +38,11 @@ public class InGameManager : MonoBehaviour
     public int DropItems=0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
     [SerializeField] GameObject gameoverBackGround;
     private bool gameFlag;  // ゲーム中であることを示す変数
-    ////
+                            ////
+
+    [SerializeField] private GameObject startBackground;
+    [SerializeField] private GameObject startCountText;
+    private int startCount;
 
     AudioSourceManager asm;
     [SerializeField] AudioClip rotateAC;
@@ -47,6 +51,7 @@ public class InGameManager : MonoBehaviour
     [SerializeField] AudioClip displayScoreAC;
     [SerializeField] AudioClip displayDropItemsAC;
     [SerializeField] AudioClip makeGameOverAC;
+    [SerializeField] AudioClip countAC;
 
 
 
@@ -90,8 +95,34 @@ public class InGameManager : MonoBehaviour
         GameOverButton.SetActive(false);
         gameFlag = true;
 
-        // 開始1.0f秒後に、最初のアイテムを生成する
-        Invoke("serveNextItem", 1.0f);
+        gameStart();
+    }
+
+
+    private void gameStart() {
+        startCount = 3;
+        startBackground.SetActive(true);
+        startCountText.SetActive(true);
+        startCountText.GetComponent<Text>().text = startCount.ToString();
+
+        asm.playSe(countAC);
+
+        Invoke("startTextCount", 1.0f);
+
+        
+    }
+
+
+    private void startTextCount() {
+        startCount--;
+        if (startCount > 0) {
+            startCountText.GetComponent<Text>().text = startCount.ToString();
+            asm.playSe(countAC);
+            Invoke("startTextCount", 1.0f);
+        } else {
+            startBackground.SetActive(false);
+            serveNextItem();
+        }
     }
 
 
