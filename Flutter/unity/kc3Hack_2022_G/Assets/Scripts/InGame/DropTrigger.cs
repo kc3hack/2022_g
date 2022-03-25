@@ -17,6 +17,11 @@ public class DropTrigger : MonoBehaviour
     private int dropFlames;
     private bool gameStop;
 
+    AudioSourceManager asm;
+    [SerializeField] AudioClip fallAC;
+    [SerializeField] AudioClip stopAC;
+    [SerializeField] AudioClip countAC;
+
 
     private void Start()
     {
@@ -24,6 +29,7 @@ public class DropTrigger : MonoBehaviour
         dropFlames = 0;
         gameStop = false;
         gameoverCountText = gameoverCountTextGO.GetComponent<Text>();
+        asm = GameObject.Find("AudioSourceManager").GetComponent<AudioSourceManager>();
     }
 
     // Triggerの中に何かが入った時
@@ -34,6 +40,7 @@ public class DropTrigger : MonoBehaviour
         {
             if (gameStop != true)
             {
+                asm.playSe(fallAC);
                 makeGameOver();
                 igm.addScore(-50);
                 igm.DropItems++;//落としたアイテムの数を数える
@@ -62,6 +69,7 @@ public class DropTrigger : MonoBehaviour
     {
         if (igm.currentItemGO != null)
         {
+            asm.playSe(stopAC);
             igm.currentItemGO.SetActive(false);
             makeGameOver();
         }
@@ -74,6 +82,9 @@ public class DropTrigger : MonoBehaviour
             dropFlames++;
             gameoverCount -= 0.02f;
             gameoverCountText.text = gameoverCount.ToString("f2");
+            if ((gameoverCount == 2.00f) || (gameoverCount == 1.00f)) {
+                asm.playSe(countAC);
+            }
         }
 
         if (dropFlames >= 150) {

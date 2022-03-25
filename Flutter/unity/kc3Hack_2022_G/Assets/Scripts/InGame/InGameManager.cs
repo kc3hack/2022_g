@@ -36,8 +36,11 @@ public class InGameManager : MonoBehaviour
     private GameObject GameOverScoreItemsText;//落としたアイテムの数用
     private GameObject GameOverButton;//ゲームオーバー時のリスタートボタン
     public int DropItems=0;//落としたアイテムの数を保管(DropTriggerにも処理を追加)
-    ////
-    
+                           ////
+
+    AudioSourceManager asm;
+    [SerializeField] AudioClip rotateAC;
+    [SerializeField] AudioClip decideAC;
 
 
 
@@ -79,6 +82,8 @@ public class InGameManager : MonoBehaviour
         rotateButtonL.SetActive(false);
         rotateButtonR.SetActive(false);
         giveupButton.SetActive(false);
+
+        asm = GameObject.Find("AudioSourceManager").GetComponent<AudioSourceManager>();
 
         // 開始1.0f秒後に、最初のアイテムを生成する
         Invoke("serveNextItem", 1.0f);
@@ -206,6 +211,7 @@ public class InGameManager : MonoBehaviour
             if (currentItem.bePlaced != true)
             {
                 currentItemGO.transform.Rotate(new Vector3(0, 0, 30 * dir));
+                asm.playSe(rotateAC);
             }
         }
     }
@@ -219,7 +225,7 @@ public class InGameManager : MonoBehaviour
         GameOverScoreText.GetComponent<Text>().text="Your Score\n"+score;//scoreを表示
         if (DropItems != 0)
         {
-            GameOverScoreItemsText.GetComponent<Text>().text = $"あなたは\n{DropItems}個の食品を\n無駄にした";//落としたアイテムの数を表示
+            GameOverScoreItemsText.GetComponent<Text>().text = $"あなたは\n{DropItems}個の食品を\n無駄にしました";//落としたアイテムの数を表示
         }
 
         GameOverButton.SetActive(true);//ボタンを表示
@@ -230,6 +236,7 @@ public class InGameManager : MonoBehaviour
     public void RestartButton()
     {
         Debug.Log("Restart");
+        asm.playSe(decideAC);
         SceneManager.LoadScene("GameScene");//GameSceneを読み直す;
     }
     ////
