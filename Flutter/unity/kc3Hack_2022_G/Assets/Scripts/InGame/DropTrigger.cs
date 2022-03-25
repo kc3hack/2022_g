@@ -11,11 +11,13 @@ public class DropTrigger : MonoBehaviour
     [SerializeField] GameObject rotateButtonL;
     [SerializeField] GameObject rotateButtonR;
     [SerializeField] GameObject giveupButton;
+    [SerializeField] private GameObject giveupCancelButton;//ギブアップをキャンセルするボタン
     [SerializeField] GameObject gameoverCountTextGO;
     Text gameoverCountText;
     float gameoverCount;
     private int dropFlames;
     private bool gameStop;
+    private bool giveupManage = false;//giveupボタンが押されているときはtrue
 
     AudioSourceManager asm;
     [SerializeField] AudioClip fallAC;
@@ -66,7 +68,7 @@ public class DropTrigger : MonoBehaviour
 
         playCountSe1 = false;
         playCountSe2 = false;
-        
+
         dropFlames = 0;
     }
 
@@ -75,22 +77,47 @@ public class DropTrigger : MonoBehaviour
     {
         if (igm.currentItemGO != null)
         {
+            giveupCancelButton.SetActive(true);
+            giveupManage = true;
+
             asm.playSe(stopAC);
             igm.currentItemGO.SetActive(false);
             makeGameOver();
         }
     }
 
+    public void GiveupCancel()
+    {
+        if (giveupManage == true)
+        {
+            beGameOver = false;
+            rotateButtonL.SetActive(true);
+            rotateButtonR.SetActive(true);
+            giveupButton.SetActive(true);
+            gameoverCountTextGO.SetActive(false);
+
+            igm.currentItemGO.SetActive(true);
+
+            playCountSe1 = true;
+            playCountSe2 = true;
+
+            dropFlames = 0;
+            giveupManage = false;
+            giveupCancelButton.SetActive(false);
+        }
+    }
 
     private void FixedUpdate()
     {
-        if (beGameOver) {
+        if (beGameOver)
+        {
             dropFlames++;
             gameoverCount -= 0.02f;
             gameoverCountText.text = gameoverCount.ToString("f2");
 
             // 残り2秒の時に音を鳴らす
-            if ((gameoverCount <= 2.00f) && (playCountSe2 == false)) {
+            if ((gameoverCount <= 2.00f) && (playCountSe2 == false))
+            {
                 asm.playSe(countAC);
                 playCountSe2 = true;
             }
@@ -103,7 +130,8 @@ public class DropTrigger : MonoBehaviour
             }
         }
 
-        if (dropFlames >= 150) {
+        if (dropFlames >= 150)
+        {
             dropFlames = 0;
             gameStop = true;
             gameoverCountTextGO.SetActive(false);
