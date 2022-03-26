@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:team_g/domain/service/auth_api.dart';
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -10,7 +11,14 @@ class ProfilePage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text("プロフィール"),
       ),
-      body: Container(),
+      body: Container(
+        child: TextButton(
+          child: Text("ログアウト"),
+          onPressed: () {
+            AuthService().logout();
+          },
+        ),
+      ),
     );
   }
 }
