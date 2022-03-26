@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:team_g/constants/constants.dart';
 import 'package:team_g/models/review_model.dart';
 
@@ -10,5 +11,18 @@ class DatabaseServices {
       "authorId": review.authorId,
       "timestamp": review.timestamp,
     });
+  }
+
+  static Future<QuerySnapshot> getAllReviews(
+      {DocumentSnapshot? startAfter}) async {
+    final refTweets =
+        reviewsRef.orderBy('timestamp', descending: true).limit(30);
+    if (startAfter == null) {
+      print("----------------------------------null------------------");
+      print(refTweets.get());
+      return refTweets.get();
+    } else {
+      return refTweets.startAfterDocument(startAfter).get();
+    }
   }
 }
