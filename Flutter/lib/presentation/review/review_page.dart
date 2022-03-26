@@ -7,7 +7,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:team_g/constants/constants.dart';
 import 'package:team_g/presentation/review/add_review_page.dart';
-import 'package:team_g/presentation/review/map_page.dart';
 
 class PostPage extends ConsumerWidget {
   const PostPage({Key? key}) : super(key: key);
