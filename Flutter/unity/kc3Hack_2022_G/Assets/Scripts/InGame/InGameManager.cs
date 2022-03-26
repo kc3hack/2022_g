@@ -57,6 +57,8 @@ public class InGameManager : MonoBehaviour
     [SerializeField] AudioClip makeGameOverAC;
     [SerializeField] AudioClip countAC;
 
+    private AudioSource InGameBGM_AS;
+
 
 
     void Start()
@@ -100,6 +102,8 @@ public class InGameManager : MonoBehaviour
         GameOverButton.SetActive(false);
         gameFlag = true;
 
+        InGameBGM_AS = GetComponent<AudioSource>();
+
         gameStart();
     }
 
@@ -131,6 +135,9 @@ public class InGameManager : MonoBehaviour
         else
         {
             startBackground.SetActive(false);
+
+            InGameBGM_AS.Play();
+
             serveNextItem();
         }
     }

@@ -25,6 +25,8 @@ public class DropTrigger : MonoBehaviour
     [SerializeField] AudioClip countAC;
     bool playCountSe1, playCountSe2;
 
+    [SerializeField] AudioSource InGameBGM_AS;
+
 
     private void Start()
     {
@@ -70,6 +72,8 @@ public class DropTrigger : MonoBehaviour
         playCountSe2 = false;
 
         dropFlames = 0;
+
+        InGameBGM_AS.Stop();
     }
 
 
@@ -108,6 +112,7 @@ public class DropTrigger : MonoBehaviour
             giveupCancelButton.SetActive(false);
 
             asm.playSe(stopAC);
+            InGameBGM_AS.Play();
         }
     }
 
