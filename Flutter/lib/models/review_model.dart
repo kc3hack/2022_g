@@ -5,9 +5,9 @@ class Review {
   String? authorId;
   String? text;
   String? category;
-  String? image;
+  // String? image;
   Timestamp? timestamp;
-  String? location;
+  // String? location;
 
   factory Review.fromDoc(DocumentSnapshot doc) {
     return Review(
@@ -15,18 +15,19 @@ class Review {
       authorId: doc['authorId'],
       text: doc['text'],
       category: doc['category'],
-      image: doc['image'],
+      // image: doc['image'],
       timestamp: doc['timestamp'],
-      location: doc['location'],
+      // location: doc['location'],
     );
   }
 
-  Review(
-      {this.id,
-      this.authorId,
-      this.text,
-      this.category,
-      this.image,
-      this.timestamp,
-      this.location});
+  Review({
+    this.id,
+    this.authorId,
+    this.text,
+    this.category,
+    // this.image,
+    this.timestamp,
+    // this.location,
+  });
 }
