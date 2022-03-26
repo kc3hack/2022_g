@@ -73,7 +73,7 @@ public class DropTrigger : MonoBehaviour
 
         dropFlames = 0;
 
-        InGameBGM_AS.Stop();
+        InGameBGM_AS.Pause();
     }
 
 
@@ -112,7 +112,7 @@ public class DropTrigger : MonoBehaviour
             giveupCancelButton.SetActive(false);
 
             asm.playSe(stopAC);
-            InGameBGM_AS.Play();
+            InGameBGM_AS.UnPause();
         }
     }
 
