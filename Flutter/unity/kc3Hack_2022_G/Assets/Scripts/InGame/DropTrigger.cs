@@ -106,6 +106,8 @@ public class DropTrigger : MonoBehaviour
             dropFlames = 0;
             giveupManage = false;
             giveupCancelButton.SetActive(false);
+
+            asm.playSe(stopAC);
         }
     }
 
