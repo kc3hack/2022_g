@@ -3,35 +3,51 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:team_g/domain/service/auth_api.dart';
 
-class UnityDemoScreen extends StatefulWidget {
-  UnityDemoScreen({Key? key}) : super(key: key);
+class GamePage extends StatefulWidget {
+  GamePage({
+    Key? key,
+    required this.initCallback,
+    required this.isInit,
+  }) : super(key: key);
+
+  VoidCallback initCallback;
+  bool isInit;
 
   @override
-  _UnityDemoScreenState createState() => _UnityDemoScreenState();
+  _GamePageState createState() => _GamePageState();
 }
 
-class _UnityDemoScreenState extends State<UnityDemoScreen> {
-  static final GlobalKey<ScaffoldState> _scaffoldKey =
-      GlobalKey<ScaffoldState>();
-  UnityWidgetController? _unityWidgetController;
+class _GamePageState extends State<GamePage> {
+  late UnityWidgetController unityWidgetController;
 
-  Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      body: SafeArea(
-        bottom: false,
-        child: Container(
-          color: Colors.amber,
-          child: UnityWidget(
-            onUnityCreated: onUnityCreated,
-          ),
-        ),
-      ),
-    );
+  void _onUnityCreated(controller) async {
+    this.unityWidgetController = await controller;
+
+    widget.isInit
+        ? Future.delayed(
+            Duration(milliseconds: 300),
+            () async {
+              await unityWidgetController.pause();
+              Navigator.of(context).pop();
+              Future.delayed(
+                Duration(milliseconds: 500),
+                () async {
+                  widget.initCallback();
+                },
+              );
+            },
+          )
+        : null;
   }
 
-  // Callback that connects the created controller to the unity controller
-  void onUnityCreated(controller) {
-    _unityWidgetController = controller;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          elevation: 0.5, backgroundColor: Color.fromARGB(200, 60, 90, 87)),
+      body: UnityWidget(
+        onUnityCreated: _onUnityCreated,
+      ),
+    );
   }
 }

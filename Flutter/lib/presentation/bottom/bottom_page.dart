@@ -19,15 +19,18 @@ class _BottomPagetate extends State<BottomPage>
   final _footerItem = [
     const ReviewPage(),
     const ProfilePage(),
-    UnityDemoScreen()
+    // GamePage(
+    //   isInit: true,
+    //   initCallback: initCallback,
+    // )
   ];
 
   void _setBottomNavigationBarItems() {
     _bottomNavigationBarItems = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(icon: Icon(Icons.post_add), label: '探す'),
       const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'マイページ'),
-      const BottomNavigationBarItem(
-          icon: Icon(Icons.games_sharp), label: 'ゲーム'),
+      // const BottomNavigationBarItem(
+      //     icon: Icon(Icons.games_sharp), label: 'ゲーム'),
     ];
   }
 
