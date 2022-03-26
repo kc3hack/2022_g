@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:team_g/presentation/post/post_page.dart';
+import 'package:team_g/presentation/game/game_page.dart';
+import 'package:team_g/presentation/review/review_page.dart';
 import 'package:team_g/presentation/profile/profile_page.dart';
 
 class BottomPage extends StatefulWidget {
@@ -17,12 +18,15 @@ class _BottomPagetate extends State<BottomPage>
   final _footerItem = [
     const PostPage(),
     const ProfilePage(),
+    UnityDemoScreen()
   ];
 
   void _setBottomNavigationBarItems() {
     _bottomNavigationBarItems = <BottomNavigationBarItem>[
-      const BottomNavigationBarItem(icon: Icon(Icons.post_add), label: 'Post'),
-      const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      const BottomNavigationBarItem(icon: Icon(Icons.post_add), label: '探す'),
+      const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'マイページ'),
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.games_sharp), label: 'ゲーム'),
     ];
   }
 
