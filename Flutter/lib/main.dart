@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: getScreenId(),
+      debugShowCheckedModeBanner: false,
     );
   }
 

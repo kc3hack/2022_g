@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_g/constants/constants.dart';
 import 'package:team_g/models/review_model.dart';
+import 'package:team_g/models/user_model.dart';
 import 'package:team_g/provider/reviews_provider.dart';
 
 import 'review_container_widget.dart';
@@ -55,14 +56,24 @@ class _TimeLineWidgetState extends State<TimeLineWidget> {
   showAllReviews() {
     List<Widget> followingReviewsList = [];
     for (Review review in _reviews) {
-      followingReviewsList.add(buildReviews(review));
+      followingReviewsList.add(FutureBuilder(
+          future: usersRef.doc(review.authorId).get(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              UserModel author = UserModel.fromDoc(snapshot.data);
+              return buildReviews(review, author);
+            } else {
+              return SizedBox.shrink();
+            }
+          }));
     }
     return followingReviewsList;
   }
 
-  buildReviews(Review review) {
+  buildReviews(Review review, UserModel author) {
     return ReviewContainer(
       review: review,
+      author: author,
     );
   }
 

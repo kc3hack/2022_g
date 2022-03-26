@@ -52,30 +52,18 @@ class _ReviewPageState extends State<ReviewPage> {
                   border: InputBorder.none,
                   prefixIcon: Icon(Icons.search, color: Colors.black),
                   suffixIcon: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.clear,
                       color: Colors.black,
                     ),
-                    onPressed: () {
-                      // clearSearch();
-                    },
+                    onPressed: () {},
                   ),
                 ),
-                // onChanged: (input) {
-                //   if (input.isNotEmpty) {
-                //     setState(() {
-                //       _users = DatabaseServices.searchUsers(input);
-                //     });
-                //   }
-                // },
               ),
             ),
-            body: Container(
-              margin: EdgeInsets.only(top: 45),
-              child: Consumer<ReviewsProvider>(
-                builder: (context, reviewsProvider, _) =>
-                    _buildPages(reviewsProvider),
-              ),
+            body: Consumer<ReviewsProvider>(
+              builder: (context, reviewsProvider, _) =>
+                  _buildPages(reviewsProvider),
             ),
             floatingActionButton: FloatingActionButton(
               heroTag: "HomeScreen",

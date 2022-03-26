@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
 import 'package:team_g/models/review_model.dart';
+import 'package:team_g/models/user_model.dart';
 
 class ReviewContainer extends StatefulWidget {
   final Review review;
+  final UserModel author;
 
-  const ReviewContainer({
-    Key? key,
-    required this.review,
-  }) : super(key: key);
+  const ReviewContainer({Key? key, required this.review, required this.author})
+      : super(key: key);
   @override
   _ReviewContainerState createState() => _ReviewContainerState();
 }
@@ -45,24 +45,27 @@ class _ReviewContainerState extends State<ReviewContainer>
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Colors.grey[350]!,
-                      width: 0.5,
-                    ),
+              Row(
+                children: [
+                  const CircleAvatar(
+                      radius: 17,
+                      backgroundImage: AssetImage('assets/placeholder.png')),
+                  const SizedBox(width: 10),
+                  Text(
+                    "@ ${widget.author.uid}",
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
                   ),
-                ),
-                child: Padding(
-                    padding: const EdgeInsets.only(left: 40, top: 5, bottom: 5),
-                    child: Text(
-                      widget.review.text!,
-                      style: const TextStyle(
-                        fontSize: 15,
-                      ),
-                    )),
+                  SizedBox(width: 5),
+                ],
               ),
+              Padding(
+                  padding: const EdgeInsets.only(left: 40, top: 5, bottom: 5),
+                  child: Text(
+                    widget.review.text!,
+                    style: const TextStyle(
+                      fontSize: 15,
+                    ),
+                  )),
               const SizedBox(height: 5),
               // Column(
               //   children: [
@@ -96,11 +99,28 @@ class _ReviewContainerState extends State<ReviewContainer>
               ),
             ],
           ),
-          Divider()
+          Positioned(
+            //カテゴリーを右上に置く
+            right: 1.0,
+            top: 6.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 3.0, horizontal: 8.0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[300]!),
+                  borderRadius: BorderRadius.circular(10), //20,25
+                  color: Colors.grey[300]),
+              child: Text(
+                widget.review.category!,
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     ));
   }
 }
-
-enum Menu { report_user, mute_user, block_user, share_tweet, delete_tweet }
