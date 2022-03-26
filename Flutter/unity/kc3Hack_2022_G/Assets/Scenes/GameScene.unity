@@ -2638,6 +2638,7 @@ GameObject:
   - component: {fileID: 2005044307}
   - component: {fileID: 2005044308}
   - component: {fileID: 2005044309}
+  - component: {fileID: 2005044310}
   m_Layer: 0
   m_Name: InGameManager
   m_TagString: Untagged
@@ -2702,6 +2703,7 @@ MonoBehaviour:
   displayDropItemsAC: {fileID: 8300000, guid: 2aad12dff33d85c41891589a8a823d2e, type: 3}
   makeGameOverAC: {fileID: 8300000, guid: e13210f25d4c827488e115f88154ae1d, type: 3}
   countAC: {fileID: 8300000, guid: c53503906b0b87745bd50e35c5c923c9, type: 3}
+  umm: {fileID: 2005044310}
 --- !u!82 &2005044309
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2798,6 +2800,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2005044310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005044306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f0d555a552e429a9e36a2bec4c1faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2031851181
 GameObject:
   m_ObjectHideFlags: 0

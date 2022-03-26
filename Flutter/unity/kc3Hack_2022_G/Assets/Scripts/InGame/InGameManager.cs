@@ -59,6 +59,8 @@ public class InGameManager : MonoBehaviour
 
     private AudioSource InGameBGM_AS;
 
+    [SerializeField] UnityMessageManager umm;
+
 
 
     void Start()
@@ -287,6 +289,8 @@ public class InGameManager : MonoBehaviour
             gameoverBackGround.SetActive(true);
 
             asm.playSe(makeGameOverAC);
+
+            umm.SendMessageToFlutter(score.ToString());
 
             GameOverScoreText.GetComponent<Text>().text = "Your Score\n" + score;//scoreを表示
             Invoke("activateGameOverScoreText", 0.5f);
