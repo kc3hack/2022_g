@@ -25,4 +25,12 @@ class DatabaseServices {
       return refTweets.startAfterDocument(startAfter).get();
     }
   }
+
+  static Future<List<Review>> getUserReviews(String userId) async {
+    QuerySnapshot userReviewSnap =
+        await reviewsRef.where('authorId', isEqualTo: userId).get();
+    List<Review> userReview =
+        userReviewSnap.docs.map((doc) => Review.fromDoc(doc)).toList();
+    return userReview;
+  }
 }
