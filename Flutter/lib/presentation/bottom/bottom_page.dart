@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:team_g/constants/constants.dart';
 import 'package:team_g/presentation/game/game_page.dart';
 import 'package:team_g/presentation/review/review_page.dart';
 import 'package:team_g/presentation/profile/profile_page.dart';
@@ -16,7 +17,7 @@ class _BottomPagetate extends State<BottomPage>
   List<BottomNavigationBarItem> _bottomNavigationBarItems = [];
 
   final _footerItem = [
-    const PostPage(),
+    const ReviewPage(),
     const ProfilePage(),
     UnityDemoScreen()
   ];
