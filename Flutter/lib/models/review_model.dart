@@ -7,22 +7,7 @@ class Review {
   String? category;
   String? image;
   Timestamp? timestamp;
-  int? likes;
-  int? comments;
-  List? menus;
-  bool? iscalender;
-
-  Review(
-      {this.id,
-      this.authorId,
-      this.text,
-      this.category,
-      this.image,
-      this.timestamp,
-      this.likes,
-      this.comments,
-      this.menus,
-      this.iscalender});
+  String? location;
 
   factory Review.fromDoc(DocumentSnapshot doc) {
     return Review(
@@ -32,8 +17,16 @@ class Review {
       category: doc['category'],
       image: doc['image'],
       timestamp: doc['timestamp'],
-      likes: doc['likes'],
-      iscalender: doc['iscalender'],
+      location: doc['location'],
     );
   }
+
+  Review(
+      {this.id,
+      this.authorId,
+      this.text,
+      this.category,
+      this.image,
+      this.timestamp,
+      this.location});
 }
