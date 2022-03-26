@@ -36,8 +36,12 @@ class _TimeLineWidgetState extends State<TimeLineWidget> {
     setState(() {
       _loading = true;
     });
+    print("-------------------------setupAllreviews-----------------------");
+    print(reviewsProvider.reviews);
     await reviewsProvider.fetchNextReviews();
     List<Review> reviews = reviewsProvider.reviews;
+    print("--------------------------reviews--------------------${reviews}");
+    print("setup");
     reviews.sort((a, b) => b.timestamp!.compareTo(a.timestamp!));
     if (mounted) {
       //widgetTreeのエラー修正(https://blog.mrym.tv/2019/12/traps-on-calling-setstate-inside-initstate/)
@@ -48,15 +52,15 @@ class _TimeLineWidgetState extends State<TimeLineWidget> {
     }
   }
 
-  showAllTweets() {
-    List<Widget> followingTweetsList = [];
+  showAllReviews() {
+    List<Widget> followingReviewsList = [];
     for (Review review in _reviews) {
-      followingTweetsList.add(buildTweets(review));
+      followingReviewsList.add(buildReviews(review));
     }
-    return followingTweetsList;
+    return followingReviewsList;
   }
 
-  buildTweets(Review review) {
+  buildReviews(Review review) {
     return ReviewContainer(
       review: review,
     );
@@ -92,7 +96,7 @@ class _TimeLineWidgetState extends State<TimeLineWidget> {
                             ),
                           )
                         ]
-                      : showAllTweets(),
+                      : showAllReviews(),
                 ),
               ],
             )
