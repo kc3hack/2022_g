@@ -24,11 +24,11 @@ class ReviewsProvider extends ChangeNotifier {
     _isFetchingReviews = true;
 
     try {
-      QuerySnapshot snap = await DatabaseServices.getAllTweets(
+      QuerySnapshot snap = await DatabaseServices.getAllReviews(
         startAfter: _reviewsSnapshot.isNotEmpty ? _reviewsSnapshot.last : null,
       );
       _reviewsSnapshot.addAll(snap.docs);
-
+      print("---------------------snapshot---------------${_reviewsSnapshot}");
       if (snap.docs.length < 30) _hasReviewNext = false;
       notifyListeners();
     } catch (error) {
