@@ -16,6 +16,8 @@ public class SceneChanger : MonoBehaviour
     {
         // このスクリプトがアタッチされたGameObjectが、シーン遷移時に破棄されなくなる
         DontDestroyOnLoad(this);
+
+        Input.multiTouchEnabled = false;//マルチタップを無効
     }
 
 
