@@ -1,10 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.team_g">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <application
         android:label="team_g"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <activity
+       <meta-data android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyBPaZuvCFob7s-LOyvKn6_o4UqTh_gDlrs"/>
+       <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
