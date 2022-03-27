@@ -300,7 +300,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     height: 20,
                                   ),
                                   const Text(
-                                    'My Orders',
+                                    'My Reviews',
                                     style: TextStyle(
                                       color: Color.fromRGBO(39, 105, 171, 1),
                                       fontSize: 27,
@@ -331,39 +331,3 @@ class _ProfilePageState extends State<ProfilePage> {
         });
   }
 }
-
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         centerTitle: true,
-//         title: const Text(
-//           "マイページ",
-//           style: TextStyle(color: Colors.black),
-//         ),
-//         backgroundColor: Colors.white,
-//       ),
-//       body: Column(children: [
-//         TextButton(
-//           child: Text("ログアウト"),
-//           onPressed: () {
-//             AuthService().logout();
-//           },
-//         ),
-//         TextButton(
-//             onPressed: () {
-//               Navigator.push(
-//                   context,
-//                   PageRouteBuilder(
-//                     pageBuilder: (context, animation1, animation2) => GamePage(
-//                       isInit: true,
-//                       initCallback: initCallback,
-//                     ),
-//                     transitionDuration: Duration.zero,
-//                     reverseTransitionDuration: Duration.zero,
-//                   ));
-//             },
-//             child: Text("ゲームする"))
-//       ]),
-//     );
-//   }
-// }
