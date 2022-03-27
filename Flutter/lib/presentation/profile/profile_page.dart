@@ -101,25 +101,30 @@ class _ProfilePageState extends State<ProfilePage> {
                                 icon: const Icon(Icons.logout_rounded),
                                 color: Colors.white,
                               ),
-                              IconButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      PageRouteBuilder(
-                                        pageBuilder:
-                                            (context, animation1, animation2) =>
-                                                GamePage(
-                                          isInit: true,
-                                          initCallback: initCallback,
-                                        ),
-                                        transitionDuration: Duration.zero,
-                                        reverseTransitionDuration:
-                                            Duration.zero,
-                                      ));
-                                },
-                                icon: const Icon(Icons.gamepad_rounded),
-                                color: Colors.white,
-                              ),
+                              _allReviews.length <= 0
+                                  ? Text(
+                                      "商品をレビューしてください",
+                                      style: TextStyle(color: Colors.white),
+                                    )
+                                  : IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            PageRouteBuilder(
+                                              pageBuilder: (context, animation1,
+                                                      animation2) =>
+                                                  GamePage(
+                                                isInit: true,
+                                                initCallback: initCallback,
+                                              ),
+                                              transitionDuration: Duration.zero,
+                                              reverseTransitionDuration:
+                                                  Duration.zero,
+                                            ));
+                                      },
+                                      icon: const Icon(Icons.gamepad_rounded),
+                                      color: Colors.white,
+                                    ),
                             ],
                           ),
                           const SizedBox(
@@ -228,9 +233,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                                         fontSize: 25,
                                                       ),
                                                     ),
-                                                    const Text(
-                                                      '1',
-                                                      style: TextStyle(
+                                                    Text(
+                                                      author.score.toString(),
+                                                      style: const TextStyle(
                                                         color: Color.fromRGBO(
                                                             39, 105, 171, 1),
                                                         fontFamily: 'Nunito',

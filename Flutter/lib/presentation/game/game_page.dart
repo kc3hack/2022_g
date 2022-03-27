@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:team_g/domain/service/auth_api.dart';
+import 'package:team_g/domain/service/database_api.dart';
 
 class GamePage extends StatefulWidget {
   GamePage({
@@ -18,26 +19,17 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
+  static final GlobalKey<ScaffoldState> _scaffoldKey =
+      GlobalKey<ScaffoldState>();
   late UnityWidgetController unityWidgetController;
 
-  void _onUnityCreated(controller) async {
+  void onUnityCreated(controller) async {
     this.unityWidgetController = await controller;
+  }
 
-    widget.isInit
-        ? Future.delayed(
-            Duration(milliseconds: 300),
-            () async {
-              await unityWidgetController.pause();
-              Navigator.of(context).pop();
-              Future.delayed(
-                Duration(milliseconds: 500),
-                () async {
-                  widget.initCallback();
-                },
-              );
-            },
-          )
-        : null;
+  void onUnityMessage(message) {
+    DatabaseServices.updateScore(message.toString());
+    print("score${message.toString()}");
   }
 
   @override
@@ -45,8 +37,15 @@ class _GamePageState extends State<GamePage> {
     return Scaffold(
       appBar: AppBar(
           elevation: 0.5, backgroundColor: Color.fromARGB(200, 60, 90, 87)),
-      body: UnityWidget(
-        onUnityCreated: _onUnityCreated,
+      key: _scaffoldKey,
+      body: SafeArea(
+        bottom: false,
+        child: Container(
+          child: UnityWidget(
+            onUnityCreated: onUnityCreated,
+            onUnityMessage: onUnityMessage,
+          ),
+        ),
       ),
     );
   }
