@@ -42,7 +42,7 @@ class AuthService extends ChangeNotifier {
   Future<void> createUserData(String uid) async {
     final data = <String, dynamic>{
       'name': '',
-      'profilePicture': '',
+      'score': 0,
       'bio': '',
       'uid': uid.substring(1, 11)
     };
