@@ -20,19 +20,27 @@
 ### 機能紹介
 
 #### [レビューアプリ]
+<img src="https://drive.google.com/uc?export=view&id=1onhs6zuQuFgInvRQocB4jZgVNpqnY0QP" width="300">
+<img src="https://drive.google.com/uc?export=view&id=1Ro40vqKsujcsSqRDGLrL2xDvaJMSkP9_" width="300">
 
-SSと説明
+コンビニの商品についてレビューしよう。
+あなたのレビューが誰かのためになるかも？
 
 #### [Foods Stacking!!]
 
-SS
+![gametitle](https://drive.google.com/uc?export=view&id=1jR3X7qn-7xsc2k0pZ0nr103gDUDzjxPG)
+![gamenow](https://drive.google.com/uc?export=view&id=14SNECc3eLzNIJNULtjCiM0ZaHXO2iuMS)
 
-レビューした商品が上から降ってくるぞ、落とさないように気をつけろ！！
-
-
+レビューした商品を読み取り、その商品を積み上げていこう。
+同じ商品（カテゴリー）をレビューするとその回数だけ、その商品の点数が上がっていくぞ。
+商品を落としてしまわないように気をつけ、ランキング１位を目指そう!
 
 ## 使用技術
-- AWS RDS
-- Bluetooh Low energy
-- 物質空間テレポート
+
+- Unity
+- Flutter
+- Firebase
+- Asprite(dot)
+- FL Studio(Sound)
+- miro
 
