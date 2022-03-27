@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_g/constants/constants.dart';
 import 'package:team_g/presentation/game/game_page.dart';
+import 'package:team_g/presentation/ranking/ranking_page.dart';
 import 'package:team_g/presentation/review/review_page.dart';
 import 'package:team_g/presentation/profile/profile_page.dart';
 
@@ -18,19 +19,20 @@ class _BottomPagetate extends State<BottomPage>
 
   final _footerItem = [
     const ReviewPage(),
+    const scoreRankingPage(),
     const ProfilePage(),
-    // GamePage(
-    //   isInit: true,
-    //   initCallback: initCallback,
-    // )
   ];
 
   void _setBottomNavigationBarItems() {
     _bottomNavigationBarItems = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(icon: Icon(Icons.post_add), label: '探す'),
+      const BottomNavigationBarItem(
+          icon: Icon(
+            Icons.thumb_up_outlined,
+            color: Colors.black,
+          ),
+          label: 'ランキング'),
       const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'マイページ'),
-      // const BottomNavigationBarItem(
-      //     icon: Icon(Icons.games_sharp), label: 'ゲーム'),
     ];
   }
 

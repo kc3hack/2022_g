@@ -67,31 +67,6 @@ class _ReviewContainerState extends State<ReviewContainer>
                     ),
                   )),
               const SizedBox(height: 5),
-              // Column(
-              //   children: [
-              //     const SizedBox(height: 15),
-              //     GestureDetector(
-              //         onTap: () {
-              //           // Navigator.push(
-              //           //   context,
-              //           //   CupertinoPageRoute(
-              //           //     builder: (context) =>
-              //           //         ImagePreview(image: widget.tweet.image!),
-              //           //   ),
-              //           // );
-              //         },
-              //         child: Container(
-              //           height: 200,
-              //           decoration: BoxDecoration(
-              //               color: Colors.white,
-              //               borderRadius: BorderRadius.circular(10),
-              //               image: DecorationImage(
-              //                 fit: BoxFit.cover,
-              //                 image: NetworkImage(widget.review.image!),
-              //               )),
-              //         ))
-              //   ],
-              // ),
               const SizedBox(height: 10),
               Text(
                 formatter.format(widget.review.timestamp!.toDate()),
