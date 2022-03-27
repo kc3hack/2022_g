@@ -7,9 +7,10 @@ class DatabaseServices {
     reviewsRef.add({
       'text': review.text,
       'category': review.category,
-      // 'image': review.image,
       "authorId": review.authorId,
       "timestamp": review.timestamp,
+      "prefecture": review.prefecture,
+      "city": review.city,
     });
   }
 
@@ -32,5 +33,9 @@ class DatabaseServices {
     List<Review> userReview =
         userReviewSnap.docs.map((doc) => Review.fromDoc(doc)).toList();
     return userReview;
+  }
+
+  static void updateScore(String score) {
+    usersRef.doc(currentUserId).update({'score': int.parse(score)});
   }
 }

@@ -97,6 +97,11 @@ class _ReviewContainerState extends State<ReviewContainer>
                 formatter.format(widget.review.timestamp!.toDate()),
                 style: TextStyle(color: Colors.grey),
               ),
+              const SizedBox(height: 5),
+              Text(
+                "場所: ${widget.review.prefecture} / ${widget.review.city}",
+                style: TextStyle(color: Colors.grey),
+              ),
             ],
           ),
           Positioned(

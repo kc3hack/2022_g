@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:team_g/constants/constants.dart';
 import 'package:team_g/presentation/review/add_review_page.dart';
+import 'package:team_g/presentation/review/map_page.dart';
 import 'package:team_g/presentation/review/widgets/review_container_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:team_g/provider/reviews_provider.dart';

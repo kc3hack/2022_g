@@ -1,10 +1,12 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:team_g/domain/service/database_api.dart';
 import 'package:team_g/models/review_model.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class CreateReviewScreen extends StatefulWidget {
   final String currentUserId;
@@ -23,20 +25,33 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
   int selectedCategoryIndex = 0;
   int selectedDayIndex = 0;
   String category = "おにぎり";
+  String prefecture = "";
+  String city = "";
 
-  // handleImageFromGallery() async {
-  //   try {
-  //     XFile imageFile = await ImagePicker().pickImage(
-  //       source: ImageSource.gallery,
-  //     ) as XFile;
-  //     setState(() {
-  //       _pickedImage = imageFile;
-  //       print(_pickedImage);
-  //     });
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+  Future<void> _determinePosition() async {
+    // ここまでたどり着くと、位置情報に対しての権限が許可されているということなので
+    // デバイスの位置情報を返す。
+    final position = await Geolocator.getCurrentPosition();
+    final placeMarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
+    final placeMark = placeMarks[0];
+    prefecture = placeMark.administrativeArea!;
+    city = placeMark.locality!;
+    print(placeMark.country); // 国が取得できます
+    print(placeMark.administrativeArea); // 県が取得できます(日本の場合)
+    print(placeMark.locality); // 市が取得できます(日本の場合)
+  }
+
+  @override
+  void initState() {
+    _determinePosition();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   Widget categoryRadio(String text, int index) {
     return NeumorphicRadio(
@@ -84,18 +99,11 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
                   _loading = true;
                 });
                 if (_reviewText!.isNotEmpty) {
-                  String image;
-                  // ignore: unnecessary_null_comparison
-                  // if (_pickedImage == null) {
-                  //   image = '';
-                  // } else {
-                  //   image =
-                  //       await StorageService.uploadTweetPicture(_pickedImage!);
-                  // }
                   Review review = Review(
                     text: _reviewText,
                     category: category,
-                    // image: image,
+                    prefecture: prefecture,
+                    city: city,
                     authorId: widget.currentUserId,
                     timestamp: Timestamp.fromDate(
                       DateTime.now(),
