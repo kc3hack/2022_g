@@ -35,6 +35,12 @@ class DatabaseServices {
     return userReview;
   }
 
+  static Future<QuerySnapshot> getUserScoreRanking() async {
+    final userScoreSnap =
+        await usersRef.orderBy('score', descending: true).limit(5);
+    return userScoreSnap.get();
+  }
+
   static void updateScore(String score) {
     usersRef.doc(currentUserId).update({'score': int.parse(score)});
   }
